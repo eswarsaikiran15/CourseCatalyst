@@ -1,6 +1,3 @@
-
-# Live Demo: https://coursecatalystapp.netlify.app/
-
 # CourseCatalyst
 
 A responsive, accessible, production-ready static website for curated programming courses and resources. Built with vanilla HTML, CSS, and JavaScript featuring an ocean theme with animated waves and particle effects.
@@ -16,23 +13,10 @@ A responsive, accessible, production-ready static website for curated programmin
 - **Performance Optimized**: Lazy loading, reduced motion support, and mobile optimizations
 - **SEO Ready**: Semantic HTML5 with proper meta tags
 
-## 📋 Table of Contents
-
-- [Demo](#demo)
-- [Installation](#installation)
-- [EmailJS Setup](#emailjs-setup)
-- [Course Data](#course-data)
-- [Deployment](#deployment)
-- [File Structure](#file-structure)
-- [Browser Support](#browser-support)
-- [Accessibility](#accessibility)
-- [Performance](#performance)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## 🚀 Demo
 
-Visit the live demo: [CourseCatalyst Demo](https://your-username.github.io/coursecatalyst)
+Visit the live demo: [CourseCatalyst Demo]([https://coursecatalystapp.netlify.app/])
 
 ## 💻 Installation
 
@@ -342,4 +326,5 @@ If you encounter any issues or have questions:
 - [x] Animations respect `prefers-reduced-motion`
 
 **CourseCatalyst** - Empowering developers with curated learning resources! 🚀
+
 
