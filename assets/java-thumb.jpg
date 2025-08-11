@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <linearGradient id="javaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f89820;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ed1c24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c41e3a;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="javaBg" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.15);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.1);stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#javaGrad)"/>
+  <rect width="400" height="225" fill="url(#javaBg)"/>
+  
+  <!-- Coffee cup icon -->
+  <g transform="translate(60, 80)">
+    <rect x="0" y="15" width="35" height="45" rx="4" fill="rgba(255,255,255,0.95)" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>
+    <rect x="3" y="18" width="29" height="35" fill="#8B4513"/>
+    <rect x="3" y="18" width="29" height="12" fill="#D2691E"/>
+    <ellipse cx="17.5" cy="12" rx="17.5" ry="6" fill="rgba(255,255,255,0.95)" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>
+    <path d="M35 25 Q42 25 42 32 Q42 39 35 39" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" fill="none"/>
+    <!-- Steam -->
+    <path d="M12 8 Q12 4 16 6 Q20 4 20 8" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none"/>
+    <path d="M8 10 Q8 6 12 8 Q16 6 16 10" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <!-- Code snippet -->
+  <g transform="translate(280, 50)" fill="rgba(255,255,255,0.9)" font-family="Consolas, monospace">
+    <text font-size="12" font-weight="bold">public class</text>
+    <text y="18" font-size="11">  HelloWorld {</text>
+    <text y="32" font-size="10">    public static</text>
+    <text y="44" font-size="10">    void main() {</text>
+    <text y="58" font-size="9">      System.out</text>
+    <text y="70" font-size="11">    }</text>
+    <text y="84" font-size="11">  }</text>
+  </g>
+  
+  <!-- Java logo inspired element -->
+  <g transform="translate(300, 140)">
+    <circle cx="0" cy="0" r="20" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+    <text font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" y="5" fill="white">J</text>
+  </g>
+  
+  <!-- Binary pattern -->
+  <g fill="rgba(255,255,255,0.1)" font-family="monospace" font-size="9">
+    <text x="15" y="200">01001010 01100001 01110110 01100001</text>
+    <text x="15" y="215">01000010 01111001 01110100 01100101</text>
+  </g>
+  
+  <!-- Main title -->
+  <text x="200" y="120" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold" filter="url(#glow)">Java</text>
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.9)" text-anchor="middle">Enterprise Programming</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="340" cy="40" r="8" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="40" cy="40" r="6" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="360" cy="190" r="5" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Modern shapes -->
+  <polygon points="150,30 165,30 157.5,45" fill="rgba(255,255,255,0.2)"/>
+  <rect x="50" y="180" width="15" height="15" rx="2" fill="rgba(255,255,255,0.15)" transform="rotate(45 57.5 187.5)"/>
+  <path d="M320 180 L340 180 L330 195 Z" fill="rgba(255,255,255,0.1)"/>
+</svg>

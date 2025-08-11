@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <linearGradient id="reactGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#61dafb;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#21232a;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#282c34;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#61dafb;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="reactBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:rgba(97,218,251,0.1);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.2);stop-opacity:1" />
+    </radialGradient>
+    <filter id="reactGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#reactGrad)"/>
+  <rect width="400" height="225" fill="url(#reactBg)"/>
+  
+  <!-- React atom logo -->
+  <g transform="translate(200, 100)">
+    <!-- Electron orbits -->
+    <ellipse cx="0" cy="0" rx="60" ry="25" fill="none" stroke="#61dafb" stroke-width="3" opacity="0.8" transform="rotate(0)"/>
+    <ellipse cx="0" cy="0" rx="60" ry="25" fill="none" stroke="#61dafb" stroke-width="3" opacity="0.8" transform="rotate(60)"/>
+    <ellipse cx="0" cy="0" rx="60" ry="25" fill="none" stroke="#61dafb" stroke-width="3" opacity="0.8" transform="rotate(-60)"/>
+    
+    <!-- Nucleus -->
+    <circle cx="0" cy="0" r="8" fill="#61dafb"/>
+    
+    <!-- Electrons -->
+    <circle cx="55" cy="0" r="4" fill="#ffffff"/>
+    <circle cx="-30" cy="45" r="4" fill="#ffffff"/>
+    <circle cx="-30" cy="-45" r="4" fill="#ffffff"/>
+  </g>
+  
+  <!-- JSX Code snippet -->
+  <g transform="translate(60, 40)" fill="rgba(255,255,255,0.9)" font-family="Consolas, monospace">
+    <text font-size="10" font-weight="bold">const App = () => {</text>
+    <text y="14" font-size="9">  const [state, setState] =</text>
+    <text y="26" font-size="9">    useState(false);</text>
+    <text y="42" font-size="9">  return (</text>
+    <text y="54" font-size="9">    &lt;div className="app"&gt;</text>
+    <text y="66" font-size="9">      &lt;h1&gt;Hello React&lt;/h1&gt;</text>
+    <text y="78" font-size="9">    &lt;/div&gt;</text>
+    <text y="90" font-size="9">  );</text>
+    <text y="104" font-size="10">};</text>
+  </g>
+  
+  <!-- Component tree visualization -->
+  <g transform="translate(300, 45)" fill="rgba(97,218,251,0.8)" stroke="rgba(255,255,255,0.6)" stroke-width="1">
+    <rect x="0" y="0" width="25" height="15" rx="2" fill="rgba(97,218,251,0.3)"/>
+    <text x="12.5" y="10" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">App</text>
+    
+    <line x1="12.5" y1="15" x2="12.5" y2="25"/>
+    <line x1="5" y1="25" x2="20" y2="25"/>
+    
+    <rect x="-5" y="25" width="20" height="12" rx="2" fill="rgba(97,218,251,0.3)"/>
+    <text x="5" y="33" font-family="Arial, sans-serif" font-size="7" text-anchor="middle" fill="white">Header</text>
+    
+    <rect x="10" y="25" width="20" height="12" rx="2" fill="rgba(97,218,251,0.3)"/>
+    <text x="20" y="33" font-family="Arial, sans-serif" font-size="7" text-anchor="middle" fill="white">Content</text>
+  </g>
+  
+  <!-- React hooks illustration -->
+  <g transform="translate(320, 140)" fill="rgba(255,255,255,0.7)">
+    <text font-family="Consolas, monospace" font-size="8">useState</text>
+    <text y="12" font-family="Consolas, monospace" font-size="8">useEffect</text>
+    <text y="24" font-family="Consolas, monospace" font-size="8">useContext</text>
+  </g>
+  
+  <!-- Binary/code pattern -->
+  <g fill="rgba(97,218,251,0.2)" font-family="monospace" font-size="9">
+    <text x="15" y="200">// Virtual DOM rendering optimization</text>
+    <text x="15" y="215">npm install react react-dom</text>
+  </g>
+  
+  <!-- Main title -->
+  <text x="200" y="190" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold" filter="url(#reactGlow)">React</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.9)" text-anchor="middle">Modern Frontend</text>
+  
+  <!-- Decorative elements */
+  <circle cx="50" cy="50" r="6" fill="rgba(97,218,251,0.4)"/>
+  <circle cx="350" cy="60" r="8" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="30" cy="180" r="4" fill="rgba(97,218,251,0.3)"/>
+  
+  <!-- Modern geometric shapes -->
+  <polygon points="350,180 365,180 357.5,195" fill="rgba(97,218,251,0.3)"/>
+  <rect x="40" y="150" width="10" height="10" rx="2" fill="rgba(255,255,255,0.2)" transform="rotate(45 45 155)"/>
+  <path d="M370 40 L380 35 L380 45 Z" fill="rgba(97,218,251,0.2)"/>
+</svg>

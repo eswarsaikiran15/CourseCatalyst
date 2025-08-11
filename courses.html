@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- courses.html - CourseCatalyst Courses Page -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - CourseCatalyst</title>
+    <meta name="description" content="Browse our comprehensive collection of programming courses including Java, Python, React, C, Data Structures, and Machine Learning.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" aria-label="CourseCatalyst Home">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">CourseCatalyst</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="nav-link active" role="menuitem" aria-current="page">Courses</a></li>
+                <li role="none"><a href="websites.html" class="nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" 
+                    aria-label="Toggle navigation menu" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <ul role="menu">
+                <li role="none"><a href="index.html" class="mobile-nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="mobile-nav-link active" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="mobile-nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="mobile-nav-link" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Programming Courses</h1>
+                <p>Comprehensive courses designed to boost your programming skills and placement preparation</p>
+            </div>
+        </section>
+
+        <!-- Courses Grid -->
+        <section class="courses-section container" aria-labelledby="all-courses-heading">
+            <h2 id="all-courses-heading" class="sr-only">All Available Courses</h2>
+            
+            <div class="courses-grid" id="courses-container">
+                <!-- Courses will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Start Learning?</h2>
+                    <p>Choose a course that interests you and begin your programming journey today.</p>
+                    <div class="cta-buttons">
+                        <a href="websites.html" class="btn btn-secondary">Explore Resources</a>
+                        <a href="contact.html" class="btn btn-outline">Get Help</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <svg viewBox="0 0 100 100" class="logo-svg">
+                            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        </svg>
+                        <span>CourseCatalyst</span>
+                    </a>
+                    <p>Empowering developers with curated learning resources.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="websites.html">Websites</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 All rights reserved to CourseCatalyst.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

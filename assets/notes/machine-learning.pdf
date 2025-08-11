@@ -1,0 +1,1475 @@
+# Machine Learning - Complete Study Guide
+
+## Table of Contents
+1. Introduction to Machine Learning
+2. Types of Machine Learning
+3. Data Preprocessing
+4. Linear Regression
+5. Logistic Regression
+6. Decision Trees and Random Forest
+7. Support Vector Machines
+8. K-Means Clustering
+9. Neural Networks and Deep Learning
+10. Model Evaluation and Validation
+11. Feature Engineering
+12. Ensemble Methods
+13. Natural Language Processing
+14. Computer Vision Basics
+
+## 1. Introduction to Machine Learning
+
+Machine Learning is a subset of Artificial Intelligence that enables computers to learn and make decisions without being explicitly programmed for every task.
+
+### Key Concepts:
+- **Algorithm**: A set of rules or instructions for solving a problem
+- **Model**: The output of an algorithm after training on data
+- **Training**: The process of teaching an algorithm using data
+- **Prediction**: Using a trained model to make decisions on new data
+- **Features**: Input variables used to make predictions
+- **Target/Label**: The output variable you're trying to predict
+
+### ML Workflow:
+```
+Data Collection → Data Preprocessing → Model Selection → 
+Training → Evaluation → Deployment → Monitoring
+```
+
+### Python Libraries for ML:
+```python
+import numpy as np                # Numerical computing
+import pandas as pd              # Data manipulation
+import matplotlib.pyplot as plt  # Plotting
+import seaborn as sns            # Statistical visualization
+from sklearn import datasets, model_selection, metrics
+import tensorflow as tf          # Deep learning
+import torch                     # Deep learning (PyTorch)
+```
+
+## 2. Types of Machine Learning
+
+### Supervised Learning:
+Learning with labeled examples (input-output pairs).
+
+**Examples:**
+- **Classification**: Predicting categories (spam/not spam, cat/dog)
+- **Regression**: Predicting continuous values (house prices, temperature)
+
+```python
+# Classification Example
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model
+clf = RandomForestClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
+# Make predictions
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.3f}")
+```
+
+### Unsupervised Learning:
+Learning patterns in data without labels.
+
+**Examples:**
+- **Clustering**: Grouping similar data points
+- **Dimensionality Reduction**: Reducing number of features
+- **Association Rules**: Finding relationships between variables
+
+```python
+# Clustering Example
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Generate sample data
+from sklearn.datasets import make_blobs
+X, _ = make_blobs(n_samples=300, centers=4, random_state=42)
+
+# Apply K-means clustering
+kmeans = KMeans(n_clusters=4, random_state=42)
+clusters = kmeans.fit_predict(X)
+
+# Visualize results
+plt.scatter(X[:, 0], X[:, 1], c=clusters, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0], 
+           kmeans.cluster_centers_[:, 1], 
+           marker='x', s=200, c='red')
+plt.title('K-Means Clustering')
+plt.show()
+```
+
+### Reinforcement Learning:
+Learning through interaction with an environment using rewards and penalties.
+
+**Examples:**
+- Game playing (Chess, Go)
+- Autonomous driving
+- Recommendation systems
+
+## 3. Data Preprocessing
+
+Data preprocessing is crucial for ML success. Raw data often needs cleaning and transformation.
+
+### Loading and Exploring Data:
+```python
+import pandas as pd
+import numpy as np
+
+# Load data
+df = pd.read_csv('data.csv')
+
+# Basic exploration
+print(df.head())                 # First 5 rows
+print(df.info())                 # Data types and missing values
+print(df.describe())             # Statistical summary
+print(df.shape)                  # Dimensions
+print(df.columns.tolist())       # Column names
+print(df.isnull().sum())         # Missing values per column
+```
+
+### Handling Missing Data:
+```python
+# Remove rows with missing values
+df_clean = df.dropna()
+
+# Remove columns with too many missing values
+df_clean = df.dropna(axis=1, thresh=len(df) * 0.7)
+
+# Fill missing values
+df['age'].fillna(df['age'].median(), inplace=True)  # Numerical
+df['category'].fillna(df['category'].mode()[0], inplace=True)  # Categorical
+
+# Forward fill or backward fill
+df['price'].fillna(method='ffill', inplace=True)
+
+# Interpolation for time series
+df['value'].interpolate(method='linear', inplace=True)
+```
+
+### Encoding Categorical Variables:
+```python
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+import pandas as pd
+
+# Label Encoding (for ordinal categories)
+le = LabelEncoder()
+df['education_encoded'] = le.fit_transform(df['education'])
+
+# One-Hot Encoding (for nominal categories)
+df_encoded = pd.get_dummies(df, columns=['category'], prefix='cat')
+
+# Manual one-hot encoding with sklearn
+from sklearn.preprocessing import OneHotEncoder
+ohe = OneHotEncoder(sparse=False, drop='first')
+category_encoded = ohe.fit_transform(df[['category']])
+category_df = pd.DataFrame(
+    category_encoded, 
+    columns=ohe.get_feature_names_out(['category'])
+)
+```
+
+### Feature Scaling:
+```python
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
+
+# Standardization (Z-score normalization)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Min-Max Scaling (0-1 range)
+minmax_scaler = MinMaxScaler()
+X_minmax = minmax_scaler.fit_transform(X)
+
+# Robust Scaling (median and IQR)
+robust_scaler = RobustScaler()
+X_robust = robust_scaler.fit_transform(X)
+
+# Example with pandas
+df[['age', 'income']] = StandardScaler().fit_transform(df[['age', 'income']])
+```
+
+### Feature Selection:
+```python
+from sklearn.feature_selection import SelectKBest, f_classif, RFE
+from sklearn.ensemble import RandomForestClassifier
+
+# Univariate feature selection
+selector = SelectKBest(score_func=f_classif, k=5)
+X_selected = selector.fit_transform(X, y)
+selected_features = X.columns[selector.get_support()]
+
+# Recursive Feature Elimination
+estimator = RandomForestClassifier()
+rfe = RFE(estimator, n_features_to_select=5)
+X_rfe = rfe.fit_transform(X, y)
+
+# Feature importance from tree-based models
+rf = RandomForestClassifier()
+rf.fit(X, y)
+feature_importance = pd.DataFrame({
+    'feature': X.columns,
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
+```
+
+## 4. Linear Regression
+
+Linear regression models the relationship between a dependent variable and independent variables using a linear equation.
+
+### Simple Linear Regression:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Generate sample data
+np.random.seed(42)
+X = np.random.randn(100, 1)
+y = 2 * X.flatten() + 1 + 0.1 * np.random.randn(100)
+
+# Create and train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Make predictions
+y_pred = model.predict(X)
+
+# Evaluate model
+mse = mean_squared_error(y, y_pred)
+r2 = r2_score(y, y_pred)
+
+print(f"Coefficient: {model.coef_[0]:.3f}")
+print(f"Intercept: {model.intercept_:.3f}")
+print(f"MSE: {mse:.3f}")
+print(f"R²: {r2:.3f}")
+
+# Visualize
+plt.scatter(X, y, alpha=0.6)
+plt.plot(X, y_pred, color='red', linewidth=2)
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Linear Regression')
+plt.show()
+```
+
+### Multiple Linear Regression:
+```python
+from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+
+# Generate sample data
+X, y = make_regression(n_samples=1000, n_features=5, noise=0.1, random_state=42)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predictions
+y_train_pred = model.predict(X_train)
+y_test_pred = model.predict(X_test)
+
+# Evaluate
+train_mse = mean_squared_error(y_train, y_train_pred)
+test_mse = mean_squared_error(y_test, y_test_pred)
+train_r2 = r2_score(y_train, y_train_pred)
+test_r2 = r2_score(y_test, y_test_pred)
+
+print(f"Training MSE: {train_mse:.3f}")
+print(f"Testing MSE: {test_mse:.3f}")
+print(f"Training R²: {train_r2:.3f}")
+print(f"Testing R²: {test_r2:.3f}")
+```
+
+### Regularized Regression:
+```python
+from sklearn.linear_model import Ridge, Lasso, ElasticNet
+from sklearn.preprocessing import StandardScaler
+
+# Standardize features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Ridge Regression (L2 regularization)
+ridge = Ridge(alpha=1.0)
+ridge.fit(X_train_scaled, y_train)
+ridge_pred = ridge.predict(X_test_scaled)
+ridge_mse = mean_squared_error(y_test, ridge_pred)
+
+# Lasso Regression (L1 regularization)
+lasso = Lasso(alpha=0.1)
+lasso.fit(X_train_scaled, y_train)
+lasso_pred = lasso.predict(X_test_scaled)
+lasso_mse = mean_squared_error(y_test, lasso_pred)
+
+# Elastic Net (L1 + L2 regularization)
+elastic = ElasticNet(alpha=0.1, l1_ratio=0.5)
+elastic.fit(X_train_scaled, y_train)
+elastic_pred = elastic.predict(X_test_scaled)
+elastic_mse = mean_squared_error(y_test, elastic_pred)
+
+print(f"Ridge MSE: {ridge_mse:.3f}")
+print(f"Lasso MSE: {lasso_mse:.3f}")
+print(f"Elastic Net MSE: {elastic_mse:.3f}")
+```
+
+### Polynomial Regression:
+```python
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import Pipeline
+
+# Create polynomial features
+degree = 3
+poly_reg = Pipeline([
+    ('poly', PolynomialFeatures(degree=degree)),
+    ('scaler', StandardScaler()),
+    ('regressor', LinearRegression())
+])
+
+# Train model
+poly_reg.fit(X_train, y_train)
+
+# Predictions
+y_poly_pred = poly_reg.predict(X_test)
+poly_mse = mean_squared_error(y_test, y_poly_pred)
+
+print(f"Polynomial (degree {degree}) MSE: {poly_mse:.3f}")
+```
+
+## 5. Logistic Regression
+
+Logistic regression is used for binary and multiclass classification problems.
+
+### Binary Classification:
+```python
+from sklearn.datasets import make_classification
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import seaborn as sns
+
+# Generate sample data
+X, y = make_classification(
+    n_samples=1000, n_features=2, n_redundant=0, 
+    n_informative=2, n_clusters_per_class=1, random_state=42
+)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train model
+log_reg = LogisticRegression(random_state=42)
+log_reg.fit(X_train, y_train)
+
+# Predictions
+y_pred = log_reg.predict(X_test)
+y_pred_proba = log_reg.predict_proba(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.title('Confusion Matrix')
+plt.ylabel('Actual')
+plt.xlabel('Predicted')
+plt.show()
+```
+
+### Decision Boundary Visualization:
+```python
+def plot_decision_boundary(X, y, model, title):
+    plt.figure(figsize=(10, 8))
+    
+    # Create mesh
+    h = 0.01
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                        np.arange(y_min, y_max, h))
+    
+    # Predict on mesh
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    
+    # Plot
+    plt.contourf(xx, yy, Z, alpha=0.8, cmap=plt.cm.RdYlBu)
+    scatter = plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.RdYlBu, edgecolors='black')
+    plt.title(title)
+    plt.colorbar(scatter)
+    plt.show()
+
+plot_decision_boundary(X_test, y_test, log_reg, 'Logistic Regression Decision Boundary')
+```
+
+### Multiclass Classification:
+```python
+from sklearn.datasets import load_iris
+
+# Load iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train multiclass logistic regression
+multi_log_reg = LogisticRegression(multi_class='ovr', random_state=42)
+multi_log_reg.fit(X_train, y_train)
+
+# Predictions
+y_pred = multi_log_reg.predict(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Multiclass Accuracy: {accuracy:.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+```
+
+## 6. Decision Trees and Random Forest
+
+Decision trees make decisions by asking a series of questions about the features.
+
+### Decision Tree Classifier:
+```python
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.datasets import load_wine
+
+# Load data
+wine = load_wine()
+X, y = wine.data, wine.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train decision tree
+dt = DecisionTreeClassifier(
+    max_depth=3,           # Limit depth to prevent overfitting
+    min_samples_split=20,  # Minimum samples to split
+    min_samples_leaf=10,   # Minimum samples in leaf
+    random_state=42
+)
+dt.fit(X_train, y_train)
+
+# Predictions
+y_pred = dt.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+
+print(f"Decision Tree Accuracy: {accuracy:.3f}")
+
+# Visualize tree
+plt.figure(figsize=(20, 10))
+plot_tree(dt, 
+         feature_names=wine.feature_names,
+         class_names=wine.target_names,
+         filled=True,
+         rounded=True,
+         fontsize=10)
+plt.title('Decision Tree')
+plt.show()
+
+# Feature importance
+feature_importance = pd.DataFrame({
+    'feature': wine.feature_names,
+    'importance': dt.feature_importances_
+}).sort_values('importance', ascending=False)
+
+print("\nTop 10 Important Features:")
+print(feature_importance.head(10))
+```
+
+### Random Forest:
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+# Train Random Forest
+rf = RandomForestClassifier(
+    n_estimators=100,      # Number of trees
+    max_depth=10,          # Maximum depth
+    min_samples_split=5,   # Minimum samples to split
+    min_samples_leaf=2,    # Minimum samples in leaf
+    random_state=42
+)
+rf.fit(X_train, y_train)
+
+# Predictions
+y_pred_rf = rf.predict(X_test)
+accuracy_rf = accuracy_score(y_test, y_pred_rf)
+
+print(f"Random Forest Accuracy: {accuracy_rf:.3f}")
+
+# Feature importance
+rf_importance = pd.DataFrame({
+    'feature': wine.feature_names,
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
+
+# Plot feature importance
+plt.figure(figsize=(10, 8))
+top_features = rf_importance.head(10)
+plt.barh(range(len(top_features)), top_features['importance'])
+plt.yticks(range(len(top_features)), top_features['feature'])
+plt.xlabel('Feature Importance')
+plt.title('Random Forest Feature Importance')
+plt.gca().invert_yaxis()
+plt.show()
+```
+
+### Hyperparameter Tuning:
+```python
+from sklearn.model_selection import GridSearchCV
+
+# Define parameter grid
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [3, 5, 10, None],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Grid search
+grid_search = GridSearchCV(
+    RandomForestClassifier(random_state=42),
+    param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+
+grid_search.fit(X_train, y_train)
+
+# Best parameters
+print("Best parameters:", grid_search.best_params_)
+print("Best cross-validation score:", grid_search.best_score_)
+
+# Best model
+best_rf = grid_search.best_estimator_
+y_pred_best = best_rf.predict(X_test)
+accuracy_best = accuracy_score(y_test, y_pred_best)
+print(f"Best Random Forest Accuracy: {accuracy_best:.3f}")
+```
+
+## 7. Support Vector Machines
+
+SVMs find the optimal boundary (hyperplane) that separates different classes.
+
+### Linear SVM:
+```python
+from sklearn.svm import SVC
+from sklearn.datasets import make_classification
+
+# Generate linearly separable data
+X, y = make_classification(
+    n_samples=100, n_features=2, n_redundant=0,
+    n_informative=2, n_clusters_per_class=1,
+    class_sep=2, random_state=42
+)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Train linear SVM
+svm_linear = SVC(kernel='linear', random_state=42)
+svm_linear.fit(X_train, y_train)
+
+# Predictions
+y_pred_linear = svm_linear.predict(X_test)
+accuracy_linear = accuracy_score(y_test, y_pred_linear)
+
+print(f"Linear SVM Accuracy: {accuracy_linear:.3f}")
+
+# Visualize decision boundary
+plot_decision_boundary(X_test, y_test, svm_linear, 'Linear SVM Decision Boundary')
+```
+
+### Non-linear SVM with RBF Kernel:
+```python
+# Generate non-linearly separable data
+from sklearn.datasets import make_moons
+
+X_moons, y_moons = make_moons(n_samples=200, noise=0.2, random_state=42)
+
+# Split data
+X_train_moons, X_test_moons, y_train_moons, y_test_moons = train_test_split(
+    X_moons, y_moons, test_size=0.2, random_state=42
+)
+
+# Train RBF SVM
+svm_rbf = SVC(kernel='rbf', gamma='scale', random_state=42)
+svm_rbf.fit(X_train_moons, y_train_moons)
+
+# Predictions
+y_pred_rbf = svm_rbf.predict(X_test_moons)
+accuracy_rbf = accuracy_score(y_test_moons, y_pred_rbf)
+
+print(f"RBF SVM Accuracy: {accuracy_rbf:.3f}")
+
+# Visualize
+plot_decision_boundary(X_test_moons, y_test_moons, svm_rbf, 'RBF SVM Decision Boundary')
+```
+
+### SVM for Regression:
+```python
+from sklearn.svm import SVR
+
+# Generate regression data
+X_reg, y_reg = make_regression(n_samples=100, n_features=1, noise=0.1, random_state=42)
+
+# Train SVR
+svr = SVR(kernel='rbf', gamma='scale')
+svr.fit(X_reg, y_reg)
+
+# Predictions
+y_pred_svr = svr.predict(X_reg)
+
+# Visualize
+plt.figure(figsize=(10, 6))
+plt.scatter(X_reg, y_reg, alpha=0.6, label='Data')
+plt.plot(X_reg, y_pred_svr, color='red', label='SVR Prediction')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Support Vector Regression')
+plt.legend()
+plt.show()
+```
+
+## 8. K-Means Clustering
+
+K-Means groups data into k clusters by minimizing within-cluster sum of squares.
+
+### Basic K-Means:
+```python
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+# Generate sample data
+X_clusters, _ = make_blobs(
+    n_samples=300, centers=4, n_features=2,
+    cluster_std=0.8, random_state=42
+)
+
+# Apply K-means
+kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
+cluster_labels = kmeans.fit_predict(X_clusters)
+
+# Visualize results
+plt.figure(figsize=(12, 5))
+
+plt.subplot(1, 2, 1)
+plt.scatter(X_clusters[:, 0], X_clusters[:, 1], alpha=0.6)
+plt.title('Original Data')
+
+plt.subplot(1, 2, 2)
+plt.scatter(X_clusters[:, 0], X_clusters[:, 1], c=cluster_labels, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0], 
+           kmeans.cluster_centers_[:, 1], 
+           marker='x', s=200, c='red', label='Centroids')
+plt.title('K-Means Clustering Results')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Cluster information
+print(f"Inertia (within-cluster sum of squares): {kmeans.inertia_:.2f}")
+print(f"Number of iterations: {kmeans.n_iter_}")
+```
+
+### Elbow Method for Optimal K:
+```python
+# Find optimal number of clusters using elbow method
+inertias = []
+k_range = range(1, 11)
+
+for k in k_range:
+    kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+    kmeans.fit(X_clusters)
+    inertias.append(kmeans.inertia_)
+
+# Plot elbow curve
+plt.figure(figsize=(10, 6))
+plt.plot(k_range, inertias, marker='o')
+plt.xlabel('Number of Clusters (k)')
+plt.ylabel('Inertia')
+plt.title('Elbow Method for Optimal k')
+plt.grid(True)
+plt.show()
+```
+
+### Silhouette Analysis:
+```python
+from sklearn.metrics import silhouette_score, silhouette_samples
+
+# Calculate silhouette scores for different k values
+silhouette_scores = []
+
+for k in range(2, 11):
+    kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+    cluster_labels = kmeans.fit_predict(X_clusters)
+    silhouette_avg = silhouette_score(X_clusters, cluster_labels)
+    silhouette_scores.append(silhouette_avg)
+
+# Plot silhouette scores
+plt.figure(figsize=(10, 6))
+plt.plot(range(2, 11), silhouette_scores, marker='o')
+plt.xlabel('Number of Clusters (k)')
+plt.ylabel('Average Silhouette Score')
+plt.title('Silhouette Analysis for Optimal k')
+plt.grid(True)
+plt.show()
+
+# Best k based on silhouette score
+best_k = range(2, 11)[np.argmax(silhouette_scores)]
+print(f"Optimal k based on silhouette score: {best_k}")
+```
+
+## 9. Neural Networks and Deep Learning
+
+Neural networks are inspired by the human brain and consist of interconnected nodes (neurons).
+
+### Basic Neural Network with Scikit-learn:
+```python
+from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
+
+# Load and prepare data
+digits = load_digits()
+X, y = digits.data, digits.target
+
+# Scale features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42
+)
+
+# Create and train neural network
+mlp = MLPClassifier(
+    hidden_layer_sizes=(100, 50),  # Two hidden layers
+    max_iter=500,
+    random_state=42
+)
+mlp.fit(X_train, y_train)
+
+# Predictions
+y_pred_mlp = mlp.predict(X_test)
+accuracy_mlp = accuracy_score(y_test, y_pred_mlp)
+
+print(f"Neural Network Accuracy: {accuracy_mlp:.3f}")
+print(f"Number of layers: {mlp.n_layers_}")
+print(f"Number of iterations: {mlp.n_iter_}")
+```
+
+### Deep Learning with TensorFlow/Keras:
+```python
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+from sklearn.preprocessing import LabelEncoder
+
+# Prepare data
+le = LabelEncoder()
+y_encoded = le.fit_transform(y)
+
+# Convert to categorical
+y_categorical = tf.keras.utils.to_categorical(y_encoded)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y_categorical, test_size=0.2, random_state=42
+)
+
+# Build neural network
+model = Sequential([
+    Dense(128, activation='relu', input_shape=(X_train.shape[1],)),
+    Dropout(0.3),
+    Dense(64, activation='relu'),
+    Dropout(0.3),
+    Dense(32, activation='relu'),
+    Dense(10, activation='softmax')  # 10 classes for digits
+])
+
+# Compile model
+model.compile(
+    optimizer=Adam(learning_rate=0.001),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Train model
+history = model.fit(
+    X_train, y_train,
+    batch_size=32,
+    epochs=50,
+    validation_data=(X_test, y_test),
+    verbose=1
+)
+
+# Evaluate model
+test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f"Deep Learning Test Accuracy: {test_accuracy:.3f}")
+
+# Plot training history
+plt.figure(figsize=(12, 5))
+
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Training Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Model Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+```
+
+### Convolutional Neural Network (CNN) Example:
+```python
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
+from tensorflow.keras.datasets import cifar10
+
+# Load CIFAR-10 dataset
+(X_train, y_train), (X_test, y_test) = cifar10.load_data()
+
+# Normalize pixel values
+X_train = X_train.astype('float32') / 255.0
+X_test = X_test.astype('float32') / 255.0
+
+# Convert labels to categorical
+y_train = tf.keras.utils.to_categorical(y_train, 10)
+y_test = tf.keras.utils.to_categorical(y_test, 10)
+
+# Build CNN
+cnn_model = Sequential([
+    Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)),
+    MaxPooling2D((2, 2)),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D((2, 2)),
+    Conv2D(64, (3, 3), activation='relu'),
+    Flatten(),
+    Dense(64, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+# Compile and train
+cnn_model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Train for fewer epochs due to computational requirements
+cnn_history = cnn_model.fit(
+    X_train[:5000], y_train[:5000],  # Use subset for demonstration
+    batch_size=32,
+    epochs=5,
+    validation_data=(X_test[:1000], y_test[:1000]),
+    verbose=1
+)
+```
+
+## 10. Model Evaluation and Validation
+
+### Cross-Validation:
+```python
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+
+# K-Fold Cross-Validation
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+cv_scores = cross_val_score(rf_model, X, y, cv=5, scoring='accuracy')
+
+print(f"Cross-validation scores: {cv_scores}")
+print(f"Mean CV score: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")
+
+# Stratified K-Fold for imbalanced datasets
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+stratified_scores = cross_val_score(rf_model, X, y, cv=skf, scoring='accuracy')
+
+print(f"Stratified CV scores: {stratified_scores}")
+print(f"Mean Stratified CV score: {stratified_scores.mean():.3f}")
+```
+
+### Classification Metrics:
+```python
+from sklearn.metrics import (
+    accuracy_score, precision_score, recall_score, f1_score,
+    roc_auc_score, roc_curve, precision_recall_curve
+)
+
+# Train a model for demonstration
+rf_model.fit(X_train, y_train)
+y_pred = rf_model.predict(X_test)
+y_pred_proba = rf_model.predict_proba(X_test)[:, 1]  # For binary classification
+
+# Calculate metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
+
+print(f"Accuracy: {accuracy:.3f}")
+print(f"Precision: {precision:.3f}")
+print(f"Recall: {recall:.3f}")
+print(f"F1-Score: {f1:.3f}")
+
+# ROC Curve (for binary classification)
+if len(np.unique(y)) == 2:
+    auc_score = roc_auc_score(y_test, y_pred_proba)
+    fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
+    
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {auc_score:.3f})')
+    plt.plot([0, 1], [0, 1], 'k--', label='Random')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('ROC Curve')
+    plt.legend()
+    plt.show()
+```
+
+### Regression Metrics:
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# For regression models
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+y_pred_reg = lr_model.predict(X_test)
+
+# Calculate regression metrics
+mae = mean_absolute_error(y_test, y_pred_reg)
+mse = mean_squared_error(y_test, y_pred_reg)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred_reg)
+
+print(f"Mean Absolute Error: {mae:.3f}")
+print(f"Mean Squared Error: {mse:.3f}")
+print(f"Root Mean Squared Error: {rmse:.3f}")
+print(f"R² Score: {r2:.3f}")
+
+# Residual plot
+plt.figure(figsize=(10, 6))
+plt.scatter(y_pred_reg, y_test - y_pred_reg, alpha=0.6)
+plt.axhline(y=0, color='red', linestyle='--')
+plt.xlabel('Predicted Values')
+plt.ylabel('Residuals')
+plt.title('Residual Plot')
+plt.show()
+```
+
+## 11. Feature Engineering
+
+Feature engineering is the process of selecting, modifying, or creating features for machine learning models.
+
+### Creating New Features:
+```python
+# Example with a sample dataset
+data = pd.DataFrame({
+    'date': pd.date_range('2023-01-01', periods=1000),
+    'value': np.random.randn(1000),
+    'category': np.random.choice(['A', 'B', 'C'], 1000),
+    'numeric_feature': np.random.uniform(0, 100, 1000)
+})
+
+# Date features
+data['year'] = data['date'].dt.year
+data['month'] = data['date'].dt.month
+data['day_of_week'] = data['date'].dt.dayofweek
+data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
+
+# Binning continuous variables
+data['value_binned'] = pd.cut(data['numeric_feature'], bins=5, labels=['Low', 'Med-Low', 'Med', 'Med-High', 'High'])
+
+# Log transformation for skewed data
+data['log_numeric'] = np.log1p(data['numeric_feature'])
+
+# Interaction features
+data['interaction'] = data['value'] * data['numeric_feature']
+
+# Polynomial features
+from sklearn.preprocessing import PolynomialFeatures
+poly = PolynomialFeatures(degree=2, include_bias=False)
+numeric_cols = ['value', 'numeric_feature']
+poly_features = poly.fit_transform(data[numeric_cols])
+poly_feature_names = poly.get_feature_names_out(numeric_cols)
+
+poly_df = pd.DataFrame(poly_features, columns=poly_feature_names)
+print("Polynomial features shape:", poly_df.shape)
+```
+
+### Text Feature Engineering:
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+import re
+
+# Sample text data
+texts = [
+    "Machine learning is awesome",
+    "Deep learning and neural networks",
+    "Natural language processing with Python",
+    "Computer vision and image recognition"
+]
+
+# Basic text preprocessing
+def preprocess_text(text):
+    # Convert to lowercase
+    text = text.lower()
+    # Remove special characters
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    return text
+
+processed_texts = [preprocess_text(text) for text in texts]
+
+# Bag of Words
+bow_vectorizer = CountVectorizer()
+bow_features = bow_vectorizer.fit_transform(processed_texts)
+
+print("Bag of Words shape:", bow_features.shape)
+print("Feature names:", bow_vectorizer.get_feature_names_out())
+
+# TF-IDF
+tfidf_vectorizer = TfidfVectorizer(max_features=100, stop_words='english')
+tfidf_features = tfidf_vectorizer.fit_transform(processed_texts)
+
+print("TF-IDF shape:", tfidf_features.shape)
+```
+
+## 12. Ensemble Methods
+
+Ensemble methods combine multiple models to create a stronger predictor.
+
+### Voting Classifier:
+```python
+from sklearn.ensemble import VotingClassifier
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+
+# Create individual classifiers
+rf_clf = RandomForestClassifier(n_estimators=100, random_state=42)
+svm_clf = SVC(probability=True, random_state=42)
+nb_clf = GaussianNB()
+
+# Create voting classifier
+voting_clf = VotingClassifier(
+    estimators=[('rf', rf_clf), ('svm', svm_clf), ('nb', nb_clf)],
+    voting='soft'  # Use predicted probabilities
+)
+
+# Train ensemble
+voting_clf.fit(X_train, y_train)
+
+# Predictions
+y_pred_voting = voting_clf.predict(X_test)
+accuracy_voting = accuracy_score(y_test, y_pred_voting)
+
+print(f"Voting Classifier Accuracy: {accuracy_voting:.3f}")
+
+# Compare individual classifiers
+for name, clf in voting_clf.named_estimators_.items():
+    y_pred_individual = clf.predict(X_test)
+    accuracy_individual = accuracy_score(y_test, y_pred_individual)
+    print(f"{name} Accuracy: {accuracy_individual:.3f}")
+```
+
+### Bagging:
+```python
+from sklearn.ensemble import BaggingClassifier
+
+# Bagging with decision trees
+bagging_clf = BaggingClassifier(
+    base_estimator=DecisionTreeClassifier(),
+    n_estimators=100,
+    random_state=42
+)
+
+bagging_clf.fit(X_train, y_train)
+y_pred_bagging = bagging_clf.predict(X_test)
+accuracy_bagging = accuracy_score(y_test, y_pred_bagging)
+
+print(f"Bagging Classifier Accuracy: {accuracy_bagging:.3f}")
+```
+
+### Boosting - AdaBoost:
+```python
+from sklearn.ensemble import AdaBoostClassifier
+
+# AdaBoost
+ada_clf = AdaBoostClassifier(
+    base_estimator=DecisionTreeClassifier(max_depth=1),
+    n_estimators=100,
+    learning_rate=1.0,
+    random_state=42
+)
+
+ada_clf.fit(X_train, y_train)
+y_pred_ada = ada_clf.predict(X_test)
+accuracy_ada = accuracy_score(y_test, y_pred_ada)
+
+print(f"AdaBoost Accuracy: {accuracy_ada:.3f}")
+```
+
+### Gradient Boosting:
+```python
+from sklearn.ensemble import GradientBoostingClassifier
+import xgboost as xgb
+
+# Gradient Boosting
+gb_clf = GradientBoostingClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    random_state=42
+)
+
+gb_clf.fit(X_train, y_train)
+y_pred_gb = gb_clf.predict(X_test)
+accuracy_gb = accuracy_score(y_test, y_pred_gb)
+
+print(f"Gradient Boosting Accuracy: {accuracy_gb:.3f}")
+
+# XGBoost
+xgb_clf = xgb.XGBClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    random_state=42
+)
+
+xgb_clf.fit(X_train, y_train)
+y_pred_xgb = xgb_clf.predict(X_test)
+accuracy_xgb = accuracy_score(y_test, y_pred_xgb)
+
+print(f"XGBoost Accuracy: {accuracy_xgb:.3f}")
+```
+
+## 13. Natural Language Processing
+
+### Text Preprocessing:
+```python
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+
+# Download required NLTK data
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
+# Sample text
+text = "Natural Language Processing is a fascinating field of Machine Learning!"
+
+# Tokenization
+tokens = word_tokenize(text.lower())
+print("Tokens:", tokens)
+
+# Remove stopwords
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [token for token in tokens if token not in stop_words]
+print("Filtered tokens:", filtered_tokens)
+
+# Stemming
+stemmer = PorterStemmer()
+stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+print("Stemmed tokens:", stemmed_tokens)
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+print("Lemmatized tokens:", lemmatized_tokens)
+```
+
+### Sentiment Analysis:
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+# Sample sentiment data
+texts = [
+    "I love this movie, it's amazing!",
+    "This product is terrible, waste of money",
+    "Great service, highly recommended",
+    "Poor quality, very disappointed",
+    "Excellent experience, will buy again"
+]
+
+labels = [1, 0, 1, 0, 1]  # 1: positive, 0: negative
+
+# Create pipeline
+sentiment_pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer(stop_words='english')),
+    ('classifier', MultinomialNB())
+])
+
+# Train model
+sentiment_pipeline.fit(texts, labels)
+
+# Test predictions
+test_texts = [
+    "This is fantastic!",
+    "I hate this product",
+    "Pretty good overall"
+]
+
+predictions = sentiment_pipeline.predict(test_texts)
+probabilities = sentiment_pipeline.predict_proba(test_texts)
+
+for text, pred, prob in zip(test_texts, predictions, probabilities):
+    sentiment = "Positive" if pred == 1 else "Negative"
+    confidence = max(prob)
+    print(f"Text: '{text}' | Sentiment: {sentiment} | Confidence: {confidence:.3f}")
+```
+
+## 14. Computer Vision Basics
+
+### Image Preprocessing:
+```python
+import cv2
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_olivetti_faces
+
+# Load face dataset
+faces = fetch_olivetti_faces()
+images = faces.images
+labels = faces.target
+
+# Display sample images
+fig, axes = plt.subplots(2, 5, figsize=(12, 6))
+for i, ax in enumerate(axes.flat):
+    ax.imshow(images[i], cmap='gray')
+    ax.set_title(f'Person {labels[i]}')
+    ax.axis('off')
+plt.suptitle('Sample Face Images')
+plt.tight_layout()
+plt.show()
+
+# Basic image operations using OpenCV
+sample_image = images[0]
+
+# Resize image
+resized = cv2.resize(sample_image, (128, 128))
+
+# Apply Gaussian blur
+blurred = cv2.GaussianBlur(sample_image, (5, 5), 0)
+
+# Edge detection
+edges = cv2.Canny((sample_image * 255).astype(np.uint8), 50, 150)
+
+# Display results
+fig, axes = plt.subplots(1, 4, figsize=(16, 4))
+images_to_show = [sample_image, resized, blurred, edges]
+titles = ['Original', 'Resized', 'Blurred', 'Edges']
+
+for img, title, ax in zip(images_to_show, titles, axes):
+    ax.imshow(img, cmap='gray')
+    ax.set_title(title)
+    ax.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+### Face Recognition with PCA:
+```python
+from sklearn.decomposition import PCA
+from sklearn.metrics import classification_report
+
+# Prepare data
+n_samples, h, w = faces.images.shape
+X = faces.data  # Flattened images
+y = faces.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+# Apply PCA for dimensionality reduction
+n_components = 150
+pca = PCA(n_components=n_components, whiten=True).fit(X_train)
+X_train_pca = pca.transform(X_train)
+X_test_pca = pca.transform(X_test)
+
+# Train classifier
+classifier = SVC(kernel='rbf', gamma='scale')
+classifier.fit(X_train_pca, y_train)
+
+# Predictions
+y_pred = classifier.predict(X_test_pca)
+
+# Evaluate
+print(f"PCA + SVM Accuracy: {accuracy_score(y_test, y_pred):.3f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Visualize eigenfaces
+eigenfaces = pca.components_.reshape((n_components, h, w))
+
+fig, axes = plt.subplots(3, 5, figsize=(12, 8))
+for i, ax in enumerate(axes.flat):
+    if i < len(eigenfaces):
+        ax.imshow(eigenfaces[i], cmap='gray')
+        ax.set_title(f'Eigenface {i+1}')
+    ax.axis('off')
+plt.suptitle('Top Eigenfaces')
+plt.tight_layout()
+plt.show()
+```
+
+## Model Deployment and Production
+
+### Saving and Loading Models:
+```python
+import joblib
+import pickle
+
+# Save model using joblib
+joblib.dump(rf_model, 'random_forest_model.pkl')
+
+# Load model
+loaded_model = joblib.load('random_forest_model.pkl')
+
+# Save using pickle
+with open('model.pkl', 'wb') as f:
+    pickle.dump(rf_model, f)
+
+# Load using pickle
+with open('model.pkl', 'rb') as f:
+    loaded_model = pickle.load(f)
+
+# Save TensorFlow/Keras model
+# model.save('my_model.h5')
+# loaded_tf_model = tf.keras.models.load_model('my_model.h5')
+```
+
+### Creating a Prediction Function:
+```python
+def predict_new_data(model, scaler, new_data):
+    """
+    Make predictions on new data
+    """
+    # Preprocess new data
+    new_data_scaled = scaler.transform(new_data)
+    
+    # Make predictions
+    predictions = model.predict(new_data_scaled)
+    probabilities = model.predict_proba(new_data_scaled)
+    
+    return predictions, probabilities
+
+# Example usage
+# predictions, probabilities = predict_new_data(loaded_model, scaler, new_samples)
+```
+
+## Best Practices and Tips
+
+### 1. Data Quality:
+- Handle missing values appropriately
+- Remove or handle outliers
+- Ensure data consistency
+- Validate data integrity
+
+### 2. Feature Engineering:
+- Domain knowledge is crucial
+- Create meaningful features
+- Handle categorical variables properly
+- Scale features when necessary
+
+### 3. Model Selection:
+- Start with simple models
+- Use cross-validation for model comparison
+- Consider computational requirements
+- Think about interpretability needs
+
+### 4. Avoiding Overfitting:
+- Use regularization techniques
+- Apply cross-validation
+- Monitor validation performance
+- Use dropout in neural networks
+
+### 5. Performance Optimization:
+- Use appropriate evaluation metrics
+- Consider class imbalance
+- Tune hyperparameters systematically
+- Ensemble different models
+
+## Common Pitfalls to Avoid
+
+1. **Data Leakage**: Using future information to predict past events
+2. **Overfitting**: Model performs well on training but poorly on test data
+3. **Underfitting**: Model is too simple to capture underlying patterns
+4. **Improper Cross-Validation**: Not using proper validation techniques
+5. **Ignoring Class Imbalance**: Not addressing imbalanced datasets
+6. **Feature Scaling Issues**: Not scaling features when required
+7. **Using Wrong Metrics**: Choosing inappropriate evaluation metrics
+
+## Interview Questions
+
+1. What's the difference between supervised and unsupervised learning?
+2. Explain bias-variance tradeoff
+3. How do you handle overfitting?
+4. What's the difference between bagging and boosting?
+5. Explain cross-validation and its types
+6. How do you handle missing data?
+7. What's the curse of dimensionality?
+8. Explain regularization techniques
+9. How do you evaluate a classification model?
+10. What's the difference between precision and recall?
+
+## Practice Projects
+
+1. **House Price Prediction**: Regression with feature engineering
+2. **Customer Churn Prediction**: Classification with imbalanced data
+3. **Recommendation System**: Collaborative filtering
+4. **Sentiment Analysis**: NLP with text classification
+5. **Image Classification**: Computer vision with CNN
+6. **Time Series Forecasting**: Predicting future values
+7. **Anomaly Detection**: Identifying outliers in data
+8. **Clustering Analysis**: Customer segmentation
+
+---
+
+*This comprehensive Machine Learning guide covers fundamental concepts, practical implementations, and real-world applications. Continue practicing with datasets and building projects to strengthen your ML skills.*

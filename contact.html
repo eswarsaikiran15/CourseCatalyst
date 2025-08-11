@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!-- contact.html - CourseCatalyst Contact Page -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CourseCatalyst</title>
+    <meta name="description" content="Get in touch with CourseCatalyst for questions, suggestions, or feedback about our programming courses and resources.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- EmailJS CDN -->
+    <!-- 
+    EMAILJS SETUP INSTRUCTIONS:
+    1. Sign up at https://www.emailjs.com/ and confirm your email
+    2. Add an Email Service (e.g., Gmail) and note the SERVICE_ID
+    3. Create an Email Template with placeholders: from_name, from_email, message
+    4. Get your USER_ID from the dashboard
+    5. Replace the placeholders in main.js with your actual IDs
+    -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" aria-label="CourseCatalyst Home">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">CourseCatalyst</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="nav-link active" role="menuitem" aria-current="page">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" 
+                    aria-label="Toggle navigation menu" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <ul role="menu">
+                <li role="none"><a href="index.html" class="mobile-nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="mobile-nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="mobile-nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="mobile-nav-link active" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Have questions, suggestions, or feedback? We'd love to hear from you!</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section container" aria-labelledby="contact-heading">
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2 id="contact-heading">Get in Touch</h2>
+                    <p>We're here to help you on your learning journey. Reach out to us for any questions about our courses, resources, or suggestions for improvement.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="contact-content">
+                                <h3>Email Us</h3>
+                                <p>Send us a message using the form and we'll get back to you as soon as possible.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="contact-content">
+                                <h3>Online Support</h3>
+                                <p>Available to help with course recommendations and technical questions.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <div class="contact-content">
+                                <h3>Quick Response</h3>
+                                <p>We typically respond within 24-48 hours during business days.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <h2>Send us a Message</h2>
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" 
+                                   id="name" 
+                                   name="name" 
+                                   required 
+                                   aria-describedby="name-error"
+                                   autocomplete="name">
+                            <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" 
+                                   id="email" 
+                                   name="email" 
+                                   required 
+                                   aria-describedby="email-error"
+                                   autocomplete="email">
+                            <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" aria-describedby="subject-help">
+                                <option value="">Select a topic (optional)</option>
+                                <option value="course-question">Course Question</option>
+                                <option value="technical-issue">Technical Issue</option>
+                                <option value="resource-suggestion">Resource Suggestion</option>
+                                <option value="general-feedback">General Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div id="subject-help" class="form-help">Help us route your message to the right person</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" 
+                                      name="message" 
+                                      rows="6" 
+                                      required 
+                                      aria-describedby="message-error message-help"
+                                      placeholder="Tell us how we can help you..."></textarea>
+                            <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
+                            <div id="message-help" class="form-help">Minimum 10 characters</div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <svg class="loading-spinner" viewBox="0 0 50 50" aria-hidden="true">
+                                        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                                            <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+                                            <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+                                        </circle>
+                                    </svg>
+                                    Sending...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section container" aria-labelledby="faq-heading">
+            <h2 id="faq-heading">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How do I access the course materials?</h3>
+                    <p>All course materials, including notes, videos, and resources, are freely accessible through our course detail pages. Simply click on any course to view its content.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Are the courses completely free?</h3>
+                    <p>Yes! CourseCatalyst curates and organizes existing free resources from across the web. We don't charge for access to any materials or courses.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I suggest new courses or resources?</h3>
+                    <p>Absolutely! We welcome suggestions for new courses, resources, or improvements. Use the contact form above or specify "Resource Suggestion" as your topic.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Do you provide certificates?</h3>
+                    <p>CourseCatalyst is a resource aggregator. Certificates would be provided by the original course creators on platforms like YouTube, Coursera, etc.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success/Error Toast -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-content">
+            <div class="toast-icon">
+                <svg class="toast-success-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/>
+                </svg>
+                <svg class="toast-error-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                </svg>
+            </div>
+            <div class="toast-message">
+                <div class="toast-title"></div>
+                <div class="toast-description"></div>
+            </div>
+            <button class="toast-close" aria-label="Close notification">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <svg viewBox="0 0 100 100" class="logo-svg">
+                            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        </svg>
+                        <span>CourseCatalyst</span>
+                    </a>
+                    <p>Empowering developers with curated learning resources.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="websites.html">Websites</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 All rights reserved to CourseCatalyst.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

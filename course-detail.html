@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!-- course-detail.html - CourseCatalyst Course Detail Page -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Course Details - CourseCatalyst</title>
+    <meta name="description" content="Detailed course information with notes, videos, and resources.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" aria-label="CourseCatalyst Home">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">CourseCatalyst</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" 
+                    aria-label="Toggle navigation menu" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <ul role="menu">
+                <li role="none"><a href="index.html" class="mobile-nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="mobile-nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="mobile-nav-link" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="mobile-nav-link" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Course Not Found Message (hidden by default) -->
+        <section id="course-not-found" class="course-not-found container" style="display: none;" aria-labelledby="not-found-heading">
+            <div class="not-found-content">
+                <h1 id="not-found-heading">Course Not Found</h1>
+                <p>Sorry, the course you're looking for doesn't exist or has been moved.</p>
+                <div class="not-found-actions">
+                    <a href="courses.html" class="btn btn-primary">Browse All Courses</a>
+                    <a href="index.html" class="btn btn-secondary">Go Home</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Detail Content (populated by JavaScript) -->
+        <div id="course-content" style="display: none;">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb container" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li aria-current="page" id="breadcrumb-current">Course Details</li>
+                </ol>
+            </nav>
+
+            <!-- Course Header -->
+            <section class="course-header">
+                <div class="container">
+                    <div class="course-header-content">
+                        <div class="course-info">
+                            <h1 id="course-title">Course Title</h1>
+                            <p id="course-description" class="course-description">Course description will be loaded here.</p>
+                            <div class="course-actions">
+                                <a href="courses.html" class="btn btn-secondary">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                    </svg>
+                                    Back to Courses
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Course Resources -->
+            <section class="course-resources container" aria-labelledby="resources-heading">
+                <h2 id="resources-heading">Course Resources</h2>
+                
+                <!-- Notes Section -->
+                <div class="resource-section" id="notes-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="section-icon">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        Study Notes
+                    </h3>
+                    <div class="resources-grid" id="notes-list">
+                        <!-- Notes will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Video Courses Section -->
+                <div class="resource-section" id="videos-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="section-icon">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                        Video Courses
+                    </h3>
+                    <div class="resources-grid" id="videos-list">
+                        <!-- Videos will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Hindi Resources Section -->
+                <div class="resource-section" id="hindi-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="section-icon">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="10 8 16 12 10 16 10 8"/>
+                        </svg>
+                        Hindi Resources
+                    </h3>
+                    <div class="resources-grid" id="hindi-list">
+                        <!-- Hindi resources will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Interview Questions Section -->
+                <div class="resource-section" id="interview-section">
+                    <h3>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="section-icon">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h9l4 4V13h4z"/>
+                        </svg>
+                        Interview Questions
+                    </h3>
+                    <div class="resources-grid" id="interview-questions-list">
+                        <!-- Interview questions will be dynamically loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Courses -->
+            <section class="related-courses container" aria-labelledby="related-heading">
+                <h2 id="related-heading">Explore More Courses</h2>
+                <div class="related-grid" id="related-courses-list">
+                    <!-- Related courses will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <svg viewBox="0 0 100 100" class="logo-svg">
+                            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        </svg>
+                        <span>CourseCatalyst</span>
+                    </a>
+                    <p>Empowering developers with curated learning resources.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="websites.html">Websites</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 All rights reserved to CourseCatalyst.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

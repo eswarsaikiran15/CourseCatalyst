@@ -1,0 +1,1532 @@
+# Data Structures & Algorithms - Complete Study Guide
+
+## Table of Contents
+1. Introduction to Data Structures
+2. Time and Space Complexity
+3. Arrays and Strings
+4. Linked Lists
+5. Stacks and Queues
+6. Trees
+7. Graphs
+8. Hash Tables
+9. Heaps and Priority Queues
+10. Sorting Algorithms
+11. Searching Algorithms
+12. Dynamic Programming
+13. Greedy Algorithms
+14. Advanced Data Structures
+
+## 1. Introduction to Data Structures
+
+A data structure is a way of organizing and storing data so that it can be accessed and modified efficiently. The choice of data structure affects the performance of algorithms.
+
+### Why Data Structures Matter:
+- **Efficiency**: Better time and space complexity
+- **Organization**: Logical arrangement of data
+- **Reusability**: Common patterns for solving problems
+- **Optimization**: Choose the right tool for the job
+
+### Types of Data Structures:
+1. **Linear**: Arrays, Linked Lists, Stacks, Queues
+2. **Non-Linear**: Trees, Graphs
+3. **Primitive**: int, char, float, pointer
+4. **Non-Primitive**: Arrays, Structures, Classes
+
+### Abstract Data Types (ADT):
+An ADT defines a data type by its behavior (operations) rather than implementation.
+
+Example: Stack ADT
+- Operations: push(), pop(), top(), isEmpty()
+- Implementation can vary: Array, Linked List
+
+## 2. Time and Space Complexity
+
+### Big O Notation:
+Describes the upper bound of algorithm complexity.
+
+**Common Time Complexities:**
+```
+O(1)        - Constant time
+O(log n)    - Logarithmic time
+O(n)        - Linear time
+O(n log n)  - Linearithmic time
+O(n²)       - Quadratic time
+O(2^n)      - Exponential time
+O(n!)       - Factorial time
+```
+
+### Analysis Examples:
+
+**Constant Time - O(1):**
+```python
+def get_first_element(arr):
+    return arr[0]  # Always takes same time
+```
+
+**Linear Time - O(n):**
+```python
+def find_max(arr):
+    max_val = arr[0]
+    for i in range(1, len(arr)):  # Loops n times
+        if arr[i] > max_val:
+            max_val = arr[i]
+    return max_val
+```
+
+**Quadratic Time - O(n²):**
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):        # Outer loop: n times
+        for j in range(n-1):  # Inner loop: n times
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+```
+
+**Logarithmic Time - O(log n):**
+```python
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1      # Eliminate half
+        else:
+            right = mid - 1     # Eliminate half
+    return -1
+```
+
+### Space Complexity:
+Amount of memory used by an algorithm.
+
+```python
+# O(1) space - constant extra memory
+def reverse_array_inplace(arr):
+    left, right = 0, len(arr) - 1
+    while left < right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+
+# O(n) space - linear extra memory
+def reverse_array_new(arr):
+    return arr[::-1]  # Creates new array
+```
+
+## 3. Arrays and Strings
+
+### Arrays:
+Collection of elements stored in contiguous memory locations.
+
+**Advantages:**
+- Random access: O(1)
+- Cache friendly
+- Simple to implement
+
+**Disadvantages:**
+- Fixed size
+- Insertion/deletion: O(n)
+- Memory waste if not fully used
+
+### Array Operations:
+
+```python
+class DynamicArray:
+    def __init__(self):
+        self.capacity = 1
+        self.size = 0
+        self.data = [None] * self.capacity
+    
+    def get(self, index):
+        if 0 <= index < self.size:
+            return self.data[index]
+        raise IndexError("Index out of bounds")
+    
+    def set(self, index, value):
+        if 0 <= index < self.size:
+            self.data[index] = value
+        else:
+            raise IndexError("Index out of bounds")
+    
+    def append(self, value):
+        if self.size >= self.capacity:
+            self._resize()
+        self.data[self.size] = value
+        self.size += 1
+    
+    def insert(self, index, value):
+        if index < 0 or index > self.size:
+            raise IndexError("Index out of bounds")
+        
+        if self.size >= self.capacity:
+            self._resize()
+        
+        # Shift elements right
+        for i in range(self.size, index, -1):
+            self.data[i] = self.data[i-1]
+        
+        self.data[index] = value
+        self.size += 1
+    
+    def delete(self, index):
+        if index < 0 or index >= self.size:
+            raise IndexError("Index out of bounds")
+        
+        # Shift elements left
+        for i in range(index, self.size - 1):
+            self.data[i] = self.data[i+1]
+        
+        self.size -= 1
+    
+    def _resize(self):
+        self.capacity *= 2
+        new_data = [None] * self.capacity
+        for i in range(self.size):
+            new_data[i] = self.data[i]
+        self.data = new_data
+```
+
+### Common Array Problems:
+
+**Two Sum Problem:**
+```python
+def two_sum(nums, target):
+    """Find two numbers that add up to target"""
+    seen = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
+
+# Example: two_sum([2, 7, 11, 15], 9) → [0, 1]
+```
+
+**Maximum Subarray (Kadane's Algorithm):**
+```python
+def max_subarray(nums):
+    """Find maximum sum of contiguous subarray"""
+    max_sum = current_sum = nums[0]
+    
+    for i in range(1, len(nums)):
+        current_sum = max(nums[i], current_sum + nums[i])
+        max_sum = max(max_sum, current_sum)
+    
+    return max_sum
+
+# Example: max_subarray([-2,1,-3,4,-1,2,1,-5,4]) → 6
+```
+
+### String Operations:
+
+**String Matching - KMP Algorithm:**
+```python
+def kmp_search(text, pattern):
+    """Knuth-Morris-Pratt string matching"""
+    def build_lps(pattern):
+        lps = [0] * len(pattern)
+        length = 0
+        i = 1
+        
+        while i < len(pattern):
+            if pattern[i] == pattern[length]:
+                length += 1
+                lps[i] = length
+                i += 1
+            else:
+                if length != 0:
+                    length = lps[length - 1]
+                else:
+                    lps[i] = 0
+                    i += 1
+        return lps
+    
+    if not pattern:
+        return []
+    
+    lps = build_lps(pattern)
+    matches = []
+    i = j = 0
+    
+    while i < len(text):
+        if text[i] == pattern[j]:
+            i += 1
+            j += 1
+        
+        if j == len(pattern):
+            matches.append(i - j)
+            j = lps[j - 1]
+        elif i < len(text) and text[i] != pattern[j]:
+            if j != 0:
+                j = lps[j - 1]
+            else:
+                i += 1
+    
+    return matches
+```
+
+## 4. Linked Lists
+
+### Singly Linked List:
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+    
+    def append(self, val):
+        new_node = ListNode(val)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+        self.size += 1
+    
+    def prepend(self, val):
+        new_node = ListNode(val, self.head)
+        self.head = new_node
+        self.size += 1
+    
+    def delete(self, val):
+        if not self.head:
+            return False
+        
+        if self.head.val == val:
+            self.head = self.head.next
+            self.size -= 1
+            return True
+        
+        current = self.head
+        while current.next and current.next.val != val:
+            current = current.next
+        
+        if current.next:
+            current.next = current.next.next
+            self.size -= 1
+            return True
+        return False
+    
+    def find(self, val):
+        current = self.head
+        while current:
+            if current.val == val:
+                return current
+            current = current.next
+        return None
+    
+    def reverse(self):
+        prev = None
+        current = self.head
+        
+        while current:
+            next_temp = current.next
+            current.next = prev
+            prev = current
+            current = next_temp
+        
+        self.head = prev
+    
+    def display(self):
+        result = []
+        current = self.head
+        while current:
+            result.append(current.val)
+            current = current.next
+        return result
+```
+
+### Doubly Linked List:
+```python
+class DoublyListNode:
+    def __init__(self, val=0, prev=None, next=None):
+        self.val = val
+        self.prev = prev
+        self.next = next
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
+    
+    def append(self, val):
+        new_node = DoublyListNode(val)
+        if not self.head:
+            self.head = self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+        self.size += 1
+    
+    def prepend(self, val):
+        new_node = DoublyListNode(val)
+        if not self.head:
+            self.head = self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.size += 1
+```
+
+### Common Linked List Problems:
+
+**Detect Cycle (Floyd's Algorithm):**
+```python
+def has_cycle(head):
+    """Detect if linked list has cycle"""
+    if not head or not head.next:
+        return False
+    
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+```
+
+**Merge Two Sorted Lists:**
+```python
+def merge_two_lists(l1, l2):
+    """Merge two sorted linked lists"""
+    dummy = ListNode(0)
+    current = dummy
+    
+    while l1 and l2:
+        if l1.val <= l2.val:
+            current.next = l1
+            l1 = l1.next
+        else:
+            current.next = l2
+            l2 = l2.next
+        current = current.next
+    
+    current.next = l1 or l2
+    return dummy.next
+```
+
+## 5. Stacks and Queues
+
+### Stack Implementation:
+```python
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.items.pop()
+    
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("Stack is empty")
+        return self.items[-1]
+    
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def size(self):
+        return len(self.items)
+```
+
+### Queue Implementation:
+```python
+from collections import deque
+
+class Queue:
+    def __init__(self):
+        self.items = deque()
+    
+    def enqueue(self, item):
+        self.items.append(item)
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise IndexError("Queue is empty")
+        return self.items.popleft()
+    
+    def front(self):
+        if self.is_empty():
+            raise IndexError("Queue is empty")
+        return self.items[0]
+    
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def size(self):
+        return len(self.items)
+```
+
+### Applications:
+
+**Valid Parentheses:**
+```python
+def is_valid_parentheses(s):
+    """Check if parentheses are valid"""
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+    
+    for char in s:
+        if char in mapping:
+            if not stack or stack.pop() != mapping[char]:
+                return False
+        else:
+            stack.append(char)
+    
+    return not stack
+```
+
+**Evaluate Postfix Expression:**
+```python
+def evaluate_postfix(expression):
+    """Evaluate postfix expression using stack"""
+    stack = []
+    operators = {'+', '-', '*', '/'}
+    
+    for token in expression.split():
+        if token in operators:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+':
+                result = a + b
+            elif token == '-':
+                result = a - b
+            elif token == '*':
+                result = a * b
+            else:  # token == '/'
+                result = a / b
+            stack.append(result)
+        else:
+            stack.append(float(token))
+    
+    return stack[0]
+```
+
+## 6. Trees
+
+### Binary Tree Implementation:
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+    
+    def insert(self, val):
+        if not self.root:
+            self.root = TreeNode(val)
+        else:
+            self._insert_recursive(self.root, val)
+    
+    def _insert_recursive(self, node, val):
+        if val < node.val:
+            if node.left is None:
+                node.left = TreeNode(val)
+            else:
+                self._insert_recursive(node.left, val)
+        else:
+            if node.right is None:
+                node.right = TreeNode(val)
+            else:
+                self._insert_recursive(node.right, val)
+    
+    def search(self, val):
+        return self._search_recursive(self.root, val)
+    
+    def _search_recursive(self, node, val):
+        if not node or node.val == val:
+            return node
+        if val < node.val:
+            return self._search_recursive(node.left, val)
+        return self._search_recursive(node.right, val)
+```
+
+### Tree Traversals:
+```python
+def inorder_traversal(root):
+    """Left -> Root -> Right"""
+    result = []
+    
+    def inorder(node):
+        if node:
+            inorder(node.left)
+            result.append(node.val)
+            inorder(node.right)
+    
+    inorder(root)
+    return result
+
+def preorder_traversal(root):
+    """Root -> Left -> Right"""
+    result = []
+    
+    def preorder(node):
+        if node:
+            result.append(node.val)
+            preorder(node.left)
+            preorder(node.right)
+    
+    preorder(root)
+    return result
+
+def postorder_traversal(root):
+    """Left -> Right -> Root"""
+    result = []
+    
+    def postorder(node):
+        if node:
+            postorder(node.left)
+            postorder(node.right)
+            result.append(node.val)
+    
+    postorder(root)
+    return result
+
+def level_order_traversal(root):
+    """Level by level (BFS)"""
+    if not root:
+        return []
+    
+    result = []
+    queue = [root]
+    
+    while queue:
+        level_size = len(queue)
+        level = []
+        
+        for _ in range(level_size):
+            node = queue.pop(0)
+            level.append(node.val)
+            
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
+        result.append(level)
+    
+    return result
+```
+
+### Common Tree Problems:
+
+**Maximum Depth:**
+```python
+def max_depth(root):
+    """Find maximum depth of binary tree"""
+    if not root:
+        return 0
+    return 1 + max(max_depth(root.left), max_depth(root.right))
+```
+
+**Validate BST:**
+```python
+def is_valid_bst(root):
+    """Check if tree is valid BST"""
+    def validate(node, min_val, max_val):
+        if not node:
+            return True
+        if node.val <= min_val or node.val >= max_val:
+            return False
+        return (validate(node.left, min_val, node.val) and
+                validate(node.right, node.val, max_val))
+    
+    return validate(root, float('-inf'), float('inf'))
+```
+
+**Lowest Common Ancestor:**
+```python
+def lowest_common_ancestor(root, p, q):
+    """Find LCA of two nodes in BST"""
+    if not root:
+        return None
+    
+    if p.val < root.val and q.val < root.val:
+        return lowest_common_ancestor(root.left, p, q)
+    elif p.val > root.val and q.val > root.val:
+        return lowest_common_ancestor(root.right, p, q)
+    else:
+        return root
+```
+
+## 7. Graphs
+
+### Graph Representations:
+
+**Adjacency List:**
+```python
+class Graph:
+    def __init__(self):
+        self.adjacency_list = {}
+    
+    def add_vertex(self, vertex):
+        if vertex not in self.adjacency_list:
+            self.adjacency_list[vertex] = []
+    
+    def add_edge(self, v1, v2):
+        self.add_vertex(v1)
+        self.add_vertex(v2)
+        self.adjacency_list[v1].append(v2)
+        self.adjacency_list[v2].append(v1)  # For undirected graph
+    
+    def remove_edge(self, v1, v2):
+        if v1 in self.adjacency_list:
+            self.adjacency_list[v1].remove(v2)
+        if v2 in self.adjacency_list:
+            self.adjacency_list[v2].remove(v1)
+    
+    def remove_vertex(self, vertex):
+        if vertex in self.adjacency_list:
+            for neighbor in self.adjacency_list[vertex]:
+                self.adjacency_list[neighbor].remove(vertex)
+            del self.adjacency_list[vertex]
+```
+
+### Graph Traversals:
+
+**Depth-First Search (DFS):**
+```python
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    
+    visited.add(start)
+    print(start, end=' ')
+    
+    for neighbor in graph.adjacency_list.get(start, []):
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+    
+    return visited
+
+def dfs_iterative(graph, start):
+    visited = set()
+    stack = [start]
+    
+    while stack:
+        vertex = stack.pop()
+        if vertex not in visited:
+            visited.add(vertex)
+            print(vertex, end=' ')
+            
+            # Add neighbors to stack
+            for neighbor in graph.adjacency_list.get(vertex, []):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+    
+    return visited
+```
+
+**Breadth-First Search (BFS):**
+```python
+from collections import deque
+
+def bfs(graph, start):
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
+    
+    while queue:
+        vertex = queue.popleft()
+        print(vertex, end=' ')
+        
+        for neighbor in graph.adjacency_list.get(vertex, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+    
+    return visited
+```
+
+### Shortest Path Algorithms:
+
+**Dijkstra's Algorithm:**
+```python
+import heapq
+
+def dijkstra(graph, start):
+    """Find shortest paths from start to all vertices"""
+    distances = {vertex: float('inf') for vertex in graph.adjacency_list}
+    distances[start] = 0
+    pq = [(0, start)]
+    
+    while pq:
+        current_distance, current_vertex = heapq.heappop(pq)
+        
+        if current_distance > distances[current_vertex]:
+            continue
+        
+        for neighbor, weight in graph.adjacency_list[current_vertex]:
+            distance = current_distance + weight
+            
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(pq, (distance, neighbor))
+    
+    return distances
+```
+
+## 8. Hash Tables
+
+### Hash Table Implementation:
+```python
+class HashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [[] for _ in range(size)]
+    
+    def _hash(self, key):
+        """Simple hash function"""
+        return hash(key) % self.size
+    
+    def insert(self, key, value):
+        index = self._hash(key)
+        bucket = self.table[index]
+        
+        # Update if key exists
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                bucket[i] = (key, value)
+                return
+        
+        # Add new key-value pair
+        bucket.append((key, value))
+    
+    def get(self, key):
+        index = self._hash(key)
+        bucket = self.table[index]
+        
+        for k, v in bucket:
+            if k == key:
+                return v
+        
+        raise KeyError(key)
+    
+    def delete(self, key):
+        index = self._hash(key)
+        bucket = self.table[index]
+        
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                del bucket[i]
+                return
+        
+        raise KeyError(key)
+    
+    def display(self):
+        for i, bucket in enumerate(self.table):
+            print(f"Bucket {i}: {bucket}")
+```
+
+### Applications:
+
+**First Non-Repeating Character:**
+```python
+def first_non_repeating_char(s):
+    """Find first non-repeating character in string"""
+    char_count = {}
+    
+    # Count frequencies
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    # Find first with count 1
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    
+    return None
+```
+
+**Group Anagrams:**
+```python
+def group_anagrams(strs):
+    """Group anagrams together"""
+    anagram_groups = {}
+    
+    for s in strs:
+        # Sort characters to get canonical form
+        sorted_chars = ''.join(sorted(s))
+        
+        if sorted_chars not in anagram_groups:
+            anagram_groups[sorted_chars] = []
+        
+        anagram_groups[sorted_chars].append(s)
+    
+    return list(anagram_groups.values())
+```
+
+## 9. Heaps and Priority Queues
+
+### Min Heap Implementation:
+```python
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+    
+    def parent(self, i):
+        return (i - 1) // 2
+    
+    def left_child(self, i):
+        return 2 * i + 1
+    
+    def right_child(self, i):
+        return 2 * i + 2
+    
+    def swap(self, i, j):
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+    
+    def insert(self, val):
+        self.heap.append(val)
+        self._heapify_up(len(self.heap) - 1)
+    
+    def _heapify_up(self, i):
+        while i > 0 and self.heap[i] < self.heap[self.parent(i)]:
+            self.swap(i, self.parent(i))
+            i = self.parent(i)
+    
+    def extract_min(self):
+        if not self.heap:
+            return None
+        
+        min_val = self.heap[0]
+        last_val = self.heap.pop()
+        
+        if self.heap:
+            self.heap[0] = last_val
+            self._heapify_down(0)
+        
+        return min_val
+    
+    def _heapify_down(self, i):
+        while True:
+            smallest = i
+            left = self.left_child(i)
+            right = self.right_child(i)
+            
+            if (left < len(self.heap) and 
+                self.heap[left] < self.heap[smallest]):
+                smallest = left
+            
+            if (right < len(self.heap) and 
+                self.heap[right] < self.heap[smallest]):
+                smallest = right
+            
+            if smallest != i:
+                self.swap(i, smallest)
+                i = smallest
+            else:
+                break
+    
+    def peek(self):
+        return self.heap[0] if self.heap else None
+    
+    def size(self):
+        return len(self.heap)
+```
+
+### Applications:
+
+**Kth Largest Element:**
+```python
+import heapq
+
+def find_kth_largest(nums, k):
+    """Find kth largest element using min heap"""
+    heap = []
+    
+    for num in nums:
+        heapq.heappush(heap, num)
+        if len(heap) > k:
+            heapq.heappop(heap)
+    
+    return heap[0]
+```
+
+**Merge K Sorted Lists:**
+```python
+def merge_k_lists(lists):
+    """Merge k sorted linked lists using heap"""
+    import heapq
+    
+    heap = []
+    
+    # Add first node from each list
+    for i, lst in enumerate(lists):
+        if lst:
+            heapq.heappush(heap, (lst.val, i, lst))
+    
+    dummy = ListNode(0)
+    current = dummy
+    
+    while heap:
+        val, i, node = heapq.heappop(heap)
+        current.next = node
+        current = current.next
+        
+        if node.next:
+            heapq.heappush(heap, (node.next.val, i, node.next))
+    
+    return dummy.next
+```
+
+## 10. Sorting Algorithms
+
+### Comparison-Based Sorts:
+
+**Quick Sort:**
+```python
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    
+    return quick_sort(left) + middle + quick_sort(right)
+
+def quick_sort_inplace(arr, low=0, high=None):
+    if high is None:
+        high = len(arr) - 1
+    
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort_inplace(arr, low, pi - 1)
+        quick_sort_inplace(arr, pi + 1, high)
+
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+    
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+```
+
+**Merge Sort:**
+```python
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+```
+
+**Heap Sort:**
+```python
+def heap_sort(arr):
+    def heapify(arr, n, i):
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
+        
+        if left < n and arr[left] > arr[largest]:
+            largest = left
+        
+        if right < n and arr[right] > arr[largest]:
+            largest = right
+        
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            heapify(arr, n, largest)
+    
+    n = len(arr)
+    
+    # Build max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+    
+    # Extract elements from heap
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+    
+    return arr
+```
+
+### Non-Comparison Based Sorts:
+
+**Counting Sort:**
+```python
+def counting_sort(arr):
+    if not arr:
+        return arr
+    
+    max_val = max(arr)
+    min_val = min(arr)
+    range_val = max_val - min_val + 1
+    
+    count = [0] * range_val
+    output = [0] * len(arr)
+    
+    # Count occurrences
+    for num in arr:
+        count[num - min_val] += 1
+    
+    # Calculate cumulative count
+    for i in range(1, range_val):
+        count[i] += count[i - 1]
+    
+    # Build output array
+    for i in range(len(arr) - 1, -1, -1):
+        output[count[arr[i] - min_val] - 1] = arr[i]
+        count[arr[i] - min_val] -= 1
+    
+    return output
+```
+
+**Radix Sort:**
+```python
+def radix_sort(arr):
+    if not arr:
+        return arr
+    
+    max_val = max(arr)
+    exp = 1
+    
+    while max_val // exp > 0:
+        counting_sort_by_digit(arr, exp)
+        exp *= 10
+    
+    return arr
+
+def counting_sort_by_digit(arr, exp):
+    output = [0] * len(arr)
+    count = [0] * 10
+    
+    # Count occurrences of each digit
+    for num in arr:
+        index = (num // exp) % 10
+        count[index] += 1
+    
+    # Calculate cumulative count
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+    
+    # Build output array
+    for i in range(len(arr) - 1, -1, -1):
+        index = (arr[i] // exp) % 10
+        output[count[index] - 1] = arr[i]
+        count[index] -= 1
+    
+    # Copy back to original array
+    for i in range(len(arr)):
+        arr[i] = output[i]
+```
+
+## 11. Searching Algorithms
+
+**Binary Search:**
+```python
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+
+def binary_search_recursive(arr, target, left=0, right=None):
+    if right is None:
+        right = len(arr) - 1
+    
+    if left > right:
+        return -1
+    
+    mid = (left + right) // 2
+    
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return binary_search_recursive(arr, target, mid + 1, right)
+    else:
+        return binary_search_recursive(arr, target, left, mid - 1)
+```
+
+**Search in Rotated Sorted Array:**
+```python
+def search_rotated(nums, target):
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        
+        # Left half is sorted
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        # Right half is sorted
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    
+    return -1
+```
+
+## 12. Dynamic Programming
+
+Dynamic Programming solves problems by breaking them down into overlapping subproblems and storing results to avoid redundant calculations.
+
+### Fibonacci with Memoization:
+```python
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    
+    if n <= 1:
+        return n
+    
+    memo[n] = fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo)
+    return memo[n]
+
+def fibonacci_tabulation(n):
+    if n <= 1:
+        return n
+    
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+    
+    return dp[n]
+```
+
+### Longest Common Subsequence:
+```python
+def lcs(text1, text2):
+    m, n = len(text1), len(text2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if text1[i-1] == text2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    return dp[m][n]
+```
+
+### 0/1 Knapsack Problem:
+```python
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for w in range(1, capacity + 1):
+            # Don't include current item
+            dp[i][w] = dp[i-1][w]
+            
+            # Include current item if it fits
+            if weights[i-1] <= w:
+                dp[i][w] = max(dp[i][w], 
+                              dp[i-1][w-weights[i-1]] + values[i-1])
+    
+    return dp[n][capacity]
+```
+
+### Coin Change Problem:
+```python
+def coin_change(coins, amount):
+    dp = [float('inf')] * (amount + 1)
+    dp[0] = 0
+    
+    for coin in coins:
+        for i in range(coin, amount + 1):
+            dp[i] = min(dp[i], dp[i - coin] + 1)
+    
+    return dp[amount] if dp[amount] != float('inf') else -1
+```
+
+## 13. Greedy Algorithms
+
+Greedy algorithms make locally optimal choices at each step.
+
+### Activity Selection Problem:
+```python
+def activity_selection(activities):
+    """Select maximum number of non-overlapping activities"""
+    # Sort by finish time
+    activities.sort(key=lambda x: x[1])
+    
+    selected = [activities[0]]
+    last_finish = activities[0][1]
+    
+    for start, finish in activities[1:]:
+        if start >= last_finish:
+            selected.append((start, finish))
+            last_finish = finish
+    
+    return selected
+```
+
+### Huffman Coding:
+```python
+import heapq
+from collections import defaultdict, Counter
+
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
+    
+    def __lt__(self, other):
+        return self.freq < other.freq
+
+def huffman_coding(text):
+    # Count frequencies
+    freq = Counter(text)
+    
+    # Create heap of nodes
+    heap = [Node(char, freq) for char, freq in freq.items()]
+    heapq.heapify(heap)
+    
+    # Build Huffman tree
+    while len(heap) > 1:
+        left = heapq.heappop(heap)
+        right = heapq.heappop(heap)
+        
+        merged = Node(None, left.freq + right.freq)
+        merged.left = left
+        merged.right = right
+        
+        heapq.heappush(heap, merged)
+    
+    # Generate codes
+    root = heap[0]
+    codes = {}
+    
+    def generate_codes(node, code):
+        if node.char:
+            codes[node.char] = code
+        else:
+            generate_codes(node.left, code + '0')
+            generate_codes(node.right, code + '1')
+    
+    generate_codes(root, '')
+    return codes
+```
+
+## 14. Advanced Data Structures
+
+### Trie (Prefix Tree):
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_word = True
+    
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_end_word
+    
+    def starts_with(self, prefix):
+        node = self.root
+        for char in prefix:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return True
+    
+    def delete(self, word):
+        def _delete(node, word, index):
+            if index == len(word):
+                if not node.is_end_word:
+                    return False
+                node.is_end_word = False
+                return len(node.children) == 0
+            
+            char = word[index]
+            child_node = node.children.get(char)
+            
+            if not child_node:
+                return False
+            
+            should_delete_child = _delete(child_node, word, index + 1)
+            
+            if should_delete_child:
+                del node.children[char]
+                return len(node.children) == 0 and not node.is_end_word
+            
+            return False
+        
+        _delete(self.root, word, 0)
+```
+
+### Disjoint Set (Union-Find):
+```python
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [0] * n
+        self.components = n
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])  # Path compression
+        return self.parent[x]
+    
+    def union(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        
+        if root_x != root_y:
+            # Union by rank
+            if self.rank[root_x] < self.rank[root_y]:
+                self.parent[root_x] = root_y
+            elif self.rank[root_x] > self.rank[root_y]:
+                self.parent[root_y] = root_x
+            else:
+                self.parent[root_y] = root_x
+                self.rank[root_x] += 1
+            
+            self.components -= 1
+            return True
+        return False
+    
+    def connected(self, x, y):
+        return self.find(x) == self.find(y)
+```
+
+## Complexity Cheat Sheet
+
+| Data Structure | Access | Search | Insertion | Deletion | Space |
+|----------------|--------|--------|-----------|----------|-------|
+| Array          | O(1)   | O(n)   | O(n)      | O(n)     | O(n)  |
+| Linked List    | O(n)   | O(n)   | O(1)      | O(1)     | O(n)  |
+| Stack          | O(n)   | O(n)   | O(1)      | O(1)     | O(n)  |
+| Queue          | O(n)   | O(n)   | O(1)      | O(1)     | O(n)  |
+| Hash Table     | N/A    | O(1)   | O(1)      | O(1)     | O(n)  |
+| Binary Tree    | O(n)   | O(n)   | O(n)      | O(n)     | O(n)  |
+| BST            | O(log n)| O(log n)| O(log n) | O(log n) | O(n)  |
+| Heap           | N/A    | O(n)   | O(log n)  | O(log n) | O(n)  |
+
+| Algorithm      | Best Case | Average Case | Worst Case | Space |
+|----------------|-----------|--------------|------------|-------|
+| Quick Sort     | O(n log n)| O(n log n)   | O(n²)      | O(log n)|
+| Merge Sort     | O(n log n)| O(n log n)   | O(n log n) | O(n)  |
+| Heap Sort      | O(n log n)| O(n log n)   | O(n log n) | O(1)  |
+| Binary Search  | O(1)      | O(log n)     | O(log n)   | O(1)  |
+
+## Practice Problems by Category
+
+### Arrays:
+1. Two Sum
+2. Maximum Subarray
+3. Rotate Array
+4. Container With Most Water
+5. 3Sum
+
+### Linked Lists:
+1. Reverse Linked List
+2. Merge Two Sorted Lists
+3. Detect Cycle
+4. Remove Nth Node
+5. Copy List with Random Pointer
+
+### Trees:
+1. Binary Tree Inorder Traversal
+2. Maximum Depth
+3. Validate BST
+4. Lowest Common Ancestor
+5. Serialize/Deserialize Binary Tree
+
+### Dynamic Programming:
+1. Climbing Stairs
+2. House Robber
+3. Longest Palindromic Substring
+4. Edit Distance
+5. Maximum Product Subarray
+
+### Graphs:
+1. Number of Islands
+2. Course Schedule
+3. Word Ladder
+4. Clone Graph
+5. Minimum Spanning Tree
+
+---
+
+*This comprehensive guide covers essential data structures and algorithms. Practice implementing these concepts and solving problems to build strong problem-solving skills for technical interviews and real-world applications.*

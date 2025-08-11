@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <linearGradient id="cGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#659ad2;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#1f4e79;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#003366;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#659ad2;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="cBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:rgba(101,154,210,0.1);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.2);stop-opacity:1" />
+    </radialGradient>
+    <filter id="cGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#cGrad)"/>
+  <rect width="400" height="225" fill="url(#cBg)"/>
+  
+  <!-- C Code snippet -->
+  <g transform="translate(30, 35)" fill="rgba(255,255,255,0.9)" font-family="Consolas, monospace">
+    <text font-size="10" font-weight="bold">#include &lt;stdio.h&gt;</text>
+    <text y="16" font-size="10">#include &lt;stdlib.h&gt;</text>
+    <text y="36" font-size="9">int main() {</text>
+    <text y="50" font-size="9">  char* ptr = malloc(100);</text>
+    <text y="64" font-size="9">  printf("Hello, World!\n");</text>
+    <text y="78" font-size="9">  free(ptr);</text>
+    <text y="92" font-size="9">  return 0;</text>
+    <text y="106" font-size="9">}</text>
+  </g>
+  
+  <!-- Memory management visualization -->
+  <g transform="translate(280, 40)" stroke="rgba(255,255,255,0.7)" stroke-width="1">
+    <text x="0" y="0" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="12">Memory</text>
+    
+    <!-- Stack visualization -->
+    <rect x="0" y="10" width="80" height="15" fill="rgba(101,154,210,0.3)" rx="2"/>
+    <text x="40" y="22" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">Stack</text>
+    
+    <rect x="0" y="30" width="80" height="15" fill="rgba(101,154,210,0.4)" rx="2"/>
+    <text x="40" y="42" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">Heap</text>
+    
+    <rect x="0" y="50" width="80" height="15" fill="rgba(101,154,210,0.5)" rx="2"/>
+    <text x="40" y="62" font-family="Arial, sans-serif" font-size="8" text-anchor="middle" fill="white">Data</text>
+  </g>
+  
+  <!-- Pointer visualization -->
+  <g transform="translate(250, 110)" stroke="rgba(255,255,255,0.6)" stroke-width="2">
+    <line x1="0" y1="0" x2="30" y2="15" marker-end="url(#arrow)"/>
+    <rect x="35" y="10" width="30" height="15" fill="rgba(255,255,255,0.2)" rx="2"/>
+    <text x="50" y="20" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">*ptr</text>
+  </g>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0,0 0,6 9,3" fill="rgba(255,255,255,0.6)"/>
+    </marker>
+  </defs>
+  
+  <!-- System-level elements -->
+  <g transform="translate(50, 150)" fill="rgba(255,255,255,0.6)">
+    <text font-family="Consolas, monospace" font-size="9">gcc -o program main.c</text>
+    <text y="14" font-family="Consolas, monospace" font-size="8">Low-level hardware access</text>
+    <text y="28" font-family="Consolas, monospace" font-size="8">Manual memory management</text>
+  </g>
+  
+  <!-- Binary representation -->
+  <g fill="rgba(101,154,210,0.3)" font-family="monospace" font-size="10">
+    <text x="15" y="200">01000011 01101111 01100100 01100101</text>
+    <text x="280" y="200">Assembly: MOV, ADD, JMP</text>
+  </g>
+  
+  <!-- Large C logo -->
+  <g transform="translate(200, 112)">
+    <circle cx="0" cy="0" r="45" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="6"/>
+    <path d="M -30 -20 Q -30 -40 -10 -40 Q 20 -40 20 0 Q 20 40 -10 40 Q -30 40 -30 20" 
+          fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="8"/>
+    <text x="0" y="10" font-family="Arial, sans-serif" font-size="42" fill="#ffffff" 
+          text-anchor="middle" font-weight="bold" filter="url(#cGlow)">C</text>
+  </g>
+  
+  <!-- Performance indicators -->
+  <g transform="translate(320, 160)" fill="rgba(255,255,255,0.7)">
+    <text font-family="Arial, sans-serif" font-size="10">Fast</text>
+    <text y="12" font-family="Arial, sans-serif" font-size="10">Efficient</text>
+    <text y="24" font-family="Arial, sans-serif" font-size="10">Portable</text>
+  </g>
+  
+  <!-- Main title -->
+  <text x="200" y="190" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.9)" text-anchor="middle">System Programming</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="40" cy="40" r="5" fill="rgba(101,154,210,0.4)"/>
+  <circle cx="360" cy="50" r="7" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="25" cy="175" r="3" fill="rgba(101,154,210,0.3)"/>
+  
+  <!-- Geometric shapes -->
+  <polygon points="370,185 380,180 375,195" fill="rgba(101,154,210,0.3)"/>
+  <rect x="30" y="125" width="8" height="8" rx="1" fill="rgba(255,255,255,0.2)" transform="rotate(45 34 129)"/>
+</svg>

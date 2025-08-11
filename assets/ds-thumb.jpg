@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <linearGradient id="dsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#4c63d2;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="dsBg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:rgba(102,126,234,0.1);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.2);stop-opacity:1" />
+    </radialGradient>
+    <filter id="dsGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#dsGrad)"/>
+  <rect width="400" height="225" fill="url(#dsBg)"/>
+  
+  <!-- Binary Tree visualization -->
+  <g transform="translate(200, 45)">
+    <circle cx="0" cy="15" r="12" fill="rgba(255,255,255,0.9)" stroke="#667eea" stroke-width="2"/>
+    <text x="0" y="20" font-family="Consolas, monospace" font-size="10" text-anchor="middle" fill="#4c63d2">50</text>
+    
+    <circle cx="-40" cy="45" r="10" fill="rgba(255,255,255,0.8)" stroke="#667eea" stroke-width="2"/>
+    <text x="-40" y="49" font-family="Consolas, monospace" font-size="9" text-anchor="middle" fill="#4c63d2">30</text>
+    
+    <circle cx="40" cy="45" r="10" fill="rgba(255,255,255,0.8)" stroke="#667eea" stroke-width="2"/>
+    <text x="40" y="49" font-family="Consolas, monospace" font-size="9" text-anchor="middle" fill="#4c63d2">70</text>
+    
+    <circle cx="-60" cy="75" r="8" fill="rgba(255,255,255,0.7)" stroke="#667eea" stroke-width="1"/>
+    <text x="-60" y="79" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="#4c63d2">20</text>
+    
+    <circle cx="-20" cy="75" r="8" fill="rgba(255,255,255,0.7)" stroke="#667eea" stroke-width="1"/>
+    <text x="-20" y="79" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="#4c63d2">40</text>
+    
+    <circle cx="20" cy="75" r="8" fill="rgba(255,255,255,0.7)" stroke="#667eea" stroke-width="1"/>
+    <text x="20" y="79" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="#4c63d2">60</text>
+    
+    <circle cx="60" cy="75" r="8" fill="rgba(255,255,255,0.7)" stroke="#667eea" stroke-width="1"/>
+    <text x="60" y="79" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="#4c63d2">80</text>
+    
+    <!-- Tree connections -->
+    <line x1="0" y1="27" x2="-40" y2="35" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+    <line x1="0" y1="27" x2="40" y2="35" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+    <line x1="-40" y1="55" x2="-60" y2="67" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+    <line x1="-40" y1="55" x2="-20" y2="67" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+    <line x1="40" y1="55" x2="20" y2="67" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+    <line x1="40" y1="55" x2="60" y2="67" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Array visualization -->
+  <g transform="translate(50, 160)">
+    <text x="0" y="0" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="10">Array:</text>
+    <rect x="0" y="5" width="20" height="15" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="10" y="15" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">5</text>
+    <rect x="20" y="5" width="20" height="15" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="30" y="15" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">2</text>
+    <rect x="40" y="5" width="20" height="15" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="50" y="15" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">8</text>
+    <rect x="60" y="5" width="20" height="15" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="70" y="15" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">1</text>
+  </g>
+  
+  <!-- Stack visualization -->
+  <g transform="translate(300, 140)">
+    <text x="0" y="0" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="10">Stack:</text>
+    <rect x="0" y="5" width="30" height="12" fill="rgba(118,75,162,0.4)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="15" y="14" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">top</text>
+    <rect x="0" y="17" width="30" height="12" fill="rgba(118,75,162,0.3)" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+    <text x="15" y="26" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">mid</text>
+    <rect x="0" y="29" width="30" height="12" fill="rgba(118,75,162,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+    <text x="15" y="38" font-family="Consolas, monospace" font-size="8" text-anchor="middle" fill="white">base</text>
+  </g>
+  
+  <!-- Algorithm complexity -->
+  <g transform="translate(30, 40)" fill="rgba(255,255,255,0.8)">
+    <text font-family="Consolas, monospace" font-size="9">O(n) - Linear</text>
+    <text y="14" font-family="Consolas, monospace" font-size="9">O(log n) - Logarithmic</text>
+    <text y="28" font-family="Consolas, monospace" font-size="9">O(n²) - Quadratic</text>
+    <text y="42" font-family="Consolas, monospace" font-size="9">O(1) - Constant</text>
+  </g>
+  
+  <!-- Linked List visualization -->
+  <g transform="translate(280, 55)">
+    <text x="0" y="0" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="9">Linked List:</text>
+    
+    <rect x="0" y="5" width="15" height="10" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="7.5" y="12" font-family="Consolas, monospace" font-size="7" text-anchor="middle" fill="white">A</text>
+    
+    <line x1="15" y1="10" x2="25" y2="10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" marker-end="url(#dsArrow)"/>
+    
+    <rect x="25" y="5" width="15" height="10" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="32.5" y="12" font-family="Consolas, monospace" font-size="7" text-anchor="middle" fill="white">B</text>
+    
+    <line x1="40" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" marker-end="url(#dsArrow)"/>
+    
+    <rect x="50" y="5" width="15" height="10" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.8)" stroke-width="1"/>
+    <text x="57.5" y="12" font-family="Consolas, monospace" font-size="7" text-anchor="middle" fill="white">C</text>
+  </g>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="dsArrow" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0,0 0,4 6,2" fill="rgba(255,255,255,0.8)"/>
+    </marker>
+  </defs>
+  
+  <!-- Main title -->
+  <text x="200" y="190" font-family="Arial, sans-serif" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="bold" filter="url(#dsGlow)">Data Structures</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.9)" text-anchor="middle">Algorithms & Complexity</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="40" cy="125" r="4" fill="rgba(102,126,234,0.4)"/>
+  <circle cx="360" cy="40" r="6" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="25" cy="200" r="3" fill="rgba(118,75,162,0.3)"/>
+  
+  <!-- Graph theory elements -->
+  <g transform="translate(320, 180)" stroke="rgba(255,255,255,0.5)" stroke-width="1" fill="rgba(255,255,255,0.3)">
+    <circle cx="0" cy="0" r="3"/>
+    <circle cx="15" cy="-10" r="3"/>
+    <circle cx="15" cy="10" r="3"/>
+    <line x1="3" y1="0" x2="12" y2="-10"/>
+    <line x1="3" y1="0" x2="12" y2="10"/>
+    <line x1="15" y1="-7" x2="15" y2="7"/>
+  </g>
+</svg>

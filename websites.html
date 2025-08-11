@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<!-- websites.html - CourseCatalyst Useful Websites Page -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useful Websites - CourseCatalyst</title>
+    <meta name="description" content="Discover essential programming websites including GeeksforGeeks, W3Schools, LeetCode, StackOverflow, and MDN for learning and practice.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="logo" aria-label="CourseCatalyst Home">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                    </svg>
+                    <span class="logo-text">CourseCatalyst</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="nav-link active" role="menuitem" aria-current="page">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-toggle" 
+                    aria-label="Toggle navigation menu" 
+                    aria-expanded="false" 
+                    aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <ul role="menu">
+                <li role="none"><a href="index.html" class="mobile-nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="courses.html" class="mobile-nav-link" role="menuitem">Courses</a></li>
+                <li role="none"><a href="websites.html" class="mobile-nav-link active" role="menuitem">Useful Websites</a></li>
+                <li role="none"><a href="contact.html" class="mobile-nav-link" role="menuitem">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Useful Programming Websites</h1>
+                <p>Essential platforms and resources for learning, practicing, and solving programming challenges</p>
+            </div>
+        </section>
+
+        <!-- Websites Grid -->
+        <section class="websites-section container" aria-labelledby="websites-heading">
+            <h2 id="websites-heading" class="sr-only">Programming Resource Websites</h2>
+            
+            <div class="websites-grid">
+                <!-- GeeksforGeeks -->
+                <article class="website-card gfg-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#0D9B0D"/>
+                            <text x="50" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">GfG</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>GeeksforGeeks</h3>
+                        <p>Comprehensive programming tutorials, articles, and practice problems. Perfect for interview preparation and competitive programming.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Tutorials</span>
+                            <span class="feature-tag">Practice</span>
+                            <span class="feature-tag">Interview Prep</span>
+                        </div>
+                        <a href="https://www.geeksforgeeks.org/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit GeeksforGeeks (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- W3Schools -->
+                <article class="website-card w3schools-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#04AA6D"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">W3</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">Schools</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>W3Schools</h3>
+                        <p>Learn web technologies with easy-to-follow tutorials, references, and hands-on examples. Great for beginners starting with web development.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Web Dev</span>
+                            <span class="feature-tag">References</span>
+                            <span class="feature-tag">Examples</span>
+                        </div>
+                        <a href="https://www.w3schools.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit W3Schools (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- LeetCode -->
+                <article class="website-card leetcode-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#FFA116"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Leet</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Code</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>LeetCode</h3>
+                        <p>The premier platform for practicing coding problems and preparing for technical interviews at top tech companies.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Coding Practice</span>
+                            <span class="feature-tag">Mock Interviews</span>
+                            <span class="feature-tag">Contests</span>
+                        </div>
+                        <a href="https://leetcode.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit LeetCode (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- StackOverflow -->
+                <article class="website-card stackoverflow-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#F48024"/>
+                            <rect x="25" y="30" width="30" height="4" fill="white"/>
+                            <rect x="25" y="40" width="40" height="4" fill="white"/>
+                            <rect x="25" y="50" width="35" height="4" fill="white"/>
+                            <rect x="25" y="60" width="45" height="4" fill="white"/>
+                            <rect x="25" y="70" width="25" height="4" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>StackOverflow</h3>
+                        <p>The largest online community for programmers to learn, share knowledge, and build careers. Get answers to your coding questions.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Q&A Community</span>
+                            <span class="feature-tag">Problem Solving</span>
+                            <span class="feature-tag">Expert Help</span>
+                        </div>
+                        <a href="https://stackoverflow.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit StackOverflow (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- MDN Web Docs -->
+                <article class="website-card mdn-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#000"/>
+                            <text x="50" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">MDN</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>MDN Web Docs</h3>
+                        <p>Mozilla's comprehensive resource for web developers with detailed documentation for HTML, CSS, JavaScript, and web APIs.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Documentation</span>
+                            <span class="feature-tag">Web Standards</span>
+                            <span class="feature-tag">Guides</span>
+                        </div>
+                        <a href="https://developer.mozilla.org/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit MDN Web Docs (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- HackerRank -->
+                <article class="website-card hackerrank-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#00EA64"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Hacker</text>
+                            <text x="50" y="60" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Rank</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>HackerRank</h3>
+                        <p>Platform for coding challenges, skill assessments, and technical interviews. Build your programming skills through practice.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Coding Challenges</span>
+                            <span class="feature-tag">Skill Tests</span>
+                            <span class="feature-tag">Competitions</span>
+                        </div>
+                        <a href="https://www.hackerrank.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit HackerRank (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- OverAPI -->
+                <article class="website-card overapi-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#2C3E50"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Over</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">API</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>OverAPI</h3>
+                        <p>Quick reference cheat sheets for multiple programming languages and tools. Great for fast lookups and syntax reminders.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Cheat Sheets</span>
+                            <span class="feature-tag">Language References</span>
+                            <span class="feature-tag">Tool Guides</span>
+                        </div>
+                        <a href="https://overapi.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit OverAPI (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- DevDocs -->
+                <article class="website-card devdocs-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#3B82F6"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Dev</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Docs</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>DevDocs</h3>
+                        <p>A lightning-fast, searchable documentation hub for dozens of programming languages, frameworks, and APIs.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Offline Mode</span>
+                            <span class="feature-tag">Multi-language Docs</span>
+                            <span class="feature-tag">Quick Search</span>
+                        </div>
+                        <a href="https://devdocs.io/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit DevDocs (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- JSON Crack -->
+                <article class="website-card jsoncrack-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#10B981"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">JSON</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Crack</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>JSON Crack</h3>
+                        <p>Visualize, format, and explore JSON data as interactive diagrams. Perfect for understanding complex JSON structures.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">JSON Visualization</span>
+                            <span class="feature-tag">Editor & Formatter</span>
+                            <span class="feature-tag">Share & Export</span>
+                        </div>
+                        <a href="https://jsoncrack.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit JSON Crack (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Teach Yourself CS -->
+                <article class="website-card teachyourselfcs-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#8B5CF6"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Teach</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">CS</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Teach Yourself CS</h3>
+                        <p>A curated guide to learning computer science fundamentals, covering algorithms, systems, and theory from scratch.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">CS Roadmap</span>
+                            <span class="feature-tag">Recommended Books</span>
+                            <span class="feature-tag">Core Concepts</span>
+                        </div>
+                        <a href="https://teachyourselfcs.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Teach Yourself CS (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Free-for.dev -->
+                <article class="website-card freefordev-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#EF4444"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Free</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Dev</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Free-for.dev</h3>
+                        <p>A massive list of free resources for developers — from APIs to cloud hosting to learning tools.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Free Developer Tools</span>
+                            <span class="feature-tag">API Listings</span>
+                            <span class="feature-tag">Hosting & Cloud Services</span>
+                        </div>
+                        <a href="https://free-for.dev/#/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Free-for.dev (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Hugging Face Learn -->
+                <article class="website-card huggingface-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#FF6B35"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">🤗</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Learn</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Hugging Face Learn</h3>
+                        <p>Hands-on courses for NLP, AI, and machine learning using Hugging Face's tools and models.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Transformers</span>
+                            <span class="feature-tag">NLP Basics</span>
+                            <span class="feature-tag">Practical AI Projects</span>
+                        </div>
+                        <a href="https://huggingface.co/learn" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Hugging Face Learn (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Python Tutor -->
+                <article class="website-card pythontutor-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#306998"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Python</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Tutor</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Python Tutor</h3>
+                        <p>Visual step-by-step execution of Python (and other languages) code to help understand how programs run.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Code Execution Visualization</span>
+                            <span class="feature-tag">Multi-language Support</span>
+                            <span class="feature-tag">Debugging Aid</span>
+                        </div>
+                        <a href="https://pythontutor.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Python Tutor (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Coddy -->
+                <article class="website-card coddy-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#FF4081"/>
+                            <text x="50" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Coddy</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Coddy</h3>
+                        <p>Interactive programming challenges and quizzes to sharpen your coding skills through fun, gamified learning.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Coding Challenges</span>
+                            <span class="feature-tag">Quizzes & Puzzles</span>
+                            <span class="feature-tag">Skill Tracking</span>
+                        </div>
+                        <a href="https://coddy.tech/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Coddy (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Take U Forward -->
+                <article class="website-card takeuforward-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#DC2626"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Take U</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Forward</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Take U Forward</h3>
+                        <p>Comprehensive DSA, system design, and interview prep resources created by Striver, perfect for placements.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">DSA Roadmaps</span>
+                            <span class="feature-tag">Interview Guides</span>
+                            <span class="feature-tag">System Design</span>
+                        </div>
+                        <a href="https://takeuforward.org/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Take U Forward (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- GFG Nation Skill Up -->
+                <article class="website-card gfgnation-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#0D9B0D"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">GFG</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Nation</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>GFG Nation Skill Up</h3>
+                        <p>A GeeksforGeeks initiative offering curated skill development programs, courses, and learning paths.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Skill Development</span>
+                            <span class="feature-tag">Curated Courses</span>
+                            <span class="feature-tag">Career Growth</span>
+                        </div>
+                        <a href="https://www.geeksforgeeks.org/nation-skill-up/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit GFG Nation Skill Up (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- IndiaBix -->
+                <article class="website-card indiabix-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#FF8C00"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">India</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Bix</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>IndiaBix</h3>
+                        <p>Practice aptitude, reasoning, and verbal ability questions with solutions — great for campus placement prep.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Aptitude Tests</span>
+                            <span class="feature-tag">Reasoning Practice</span>
+                            <span class="feature-tag">Interview Questions</span>
+                        </div>
+                        <a href="https://www.indiabix.com/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit IndiaBix (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- QuickRef -->
+                <article class="website-card quickref-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#059669"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Quick</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Ref</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>QuickRef</h3>
+                        <p>Concise, language-specific cheat sheets and quick reference guides for developers.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Programming Cheat Sheets</span>
+                            <span class="feature-tag">Syntax Guides</span>
+                            <span class="feature-tag">Quick Lookup</span>
+                        </div>
+                        <a href="https://quickref.me/index.html" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit QuickRef (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Roadmap.sh -->
+                <article class="website-card roadmapsh-card">
+                    <div class="website-icon">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <rect x="10" y="10" width="80" height="80" rx="10" fill="#6366F1"/>
+                            <text x="50" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Road</text>
+                            <text x="50" y="65" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">map.sh</text>
+                        </svg>
+                    </div>
+                    <div class="website-content">
+                        <h3>Roadmap.sh</h3>
+                        <p>Visual and interactive roadmaps to master programming, web development, ML, DevOps, and more — the perfect guide to plan your learning path.</p>
+                        <div class="website-features">
+                            <span class="feature-tag">Developer Roadmaps</span>
+                            <span class="feature-tag">Visual Learning Paths</span>
+                            <span class="feature-tag">Beginner to Advanced</span>
+                        </div>
+                        <a href="https://roadmap.sh/" 
+                           class="btn btn-primary" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="Visit Roadmap.sh (opens in new tab)">
+                            Visit Website
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section container" aria-labelledby="categories-heading">
+            <h2 id="categories-heading">Resource Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h3>Learning Platforms</h3>
+                    <p>Comprehensive tutorials and courses for beginners to advanced learners.</p>
+                    <ul>
+                        <li>GeeksforGeeks</li>
+                        <li>W3Schools</li>
+                        <li>MDN Web Docs</li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>Practice Platforms</h3>
+                    <p>Coding challenges and problem-solving practice for skill improvement.</p>
+                    <ul>
+                        <li>LeetCode</li>
+                        <li>HackerRank</li>
+                        <li>Coding Contests</li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🤝</div>
+                    <h3>Community Support</h3>
+                    <p>Get help from experienced developers and share knowledge.</p>
+                    <ul>
+                        <li>StackOverflow</li>
+                        <li>Reddit Programming</li>
+                        <li>Discord Communities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section container" aria-labelledby="tips-heading">
+            <h2 id="tips-heading">How to Make the Most of These Resources</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-number">1</div>
+                    <h3>Start with Fundamentals</h3>
+                    <p>Begin with W3Schools or GeeksforGeeks for basic concepts before moving to advanced topics.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">2</div>
+                    <h3>Practice Regularly</h3>
+                    <p>Use LeetCode and HackerRank daily to improve problem-solving skills and coding speed.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">3</div>
+                    <h3>Engage with Community</h3>
+                    <p>Ask questions on StackOverflow and participate in discussions to learn from others.</p>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-number">4</div>
+                    <h3>Reference Documentation</h3>
+                    <p>Use MDN for accurate web development references and stay updated with best practices.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <svg viewBox="0 0 100 100" class="logo-svg">
+                            <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                        </svg>
+                        <span>CourseCatalyst</span>
+                    </a>
+                    <p>Empowering developers with curated learning resources.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="websites.html">Websites</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 All rights reserved to CourseCatalyst.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>

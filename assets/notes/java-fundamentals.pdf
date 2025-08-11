@@ -1,0 +1,228 @@
+# Java Fundamentals - Study Notes
+
+## Table of Contents
+1. Introduction to Java
+2. Basic Syntax and Data Types
+3. Control Structures
+4. Methods and Functions
+5. Object-Oriented Programming
+6. Exception Handling
+7. Collections Framework
+8. File I/O Operations
+
+## 1. Introduction to Java
+
+Java is a high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible.
+
+### Key Features:
+- Platform Independent (Write Once, Run Anywhere)
+- Object-Oriented Programming
+- Robust and Secure
+- Multithreaded
+- Distributed Computing Support
+
+### Java Development Kit (JDK)
+The JDK includes:
+- Java Compiler (javac)
+- Java Runtime Environment (JRE)
+- Development Tools
+- API Documentation
+
+## 2. Basic Syntax and Data Types
+
+### Primitive Data Types:
+- byte (8-bit)
+- short (16-bit)
+- int (32-bit)
+- long (64-bit)
+- float (32-bit)
+- double (64-bit)
+- char (16-bit Unicode)
+- boolean (true/false)
+
+### Variables and Constants:
+```java
+int age = 25;
+final double PI = 3.14159;
+String name = "John";
+```
+
+## 3. Control Structures
+
+### Conditional Statements:
+```java
+if (condition) {
+    // code block
+} else if (anotherCondition) {
+    // code block
+} else {
+    // code block
+}
+
+switch (variable) {
+    case value1:
+        // code
+        break;
+    case value2:
+        // code
+        break;
+    default:
+        // default code
+}
+```
+
+### Loops:
+```java
+// For loop
+for (int i = 0; i < 10; i++) {
+    System.out.println(i);
+}
+
+// While loop
+while (condition) {
+    // code
+}
+
+// Do-while loop
+do {
+    // code
+} while (condition);
+```
+
+## 4. Methods and Functions
+
+```java
+public static returnType methodName(parameters) {
+    // method body
+    return value; // if not void
+}
+
+// Example
+public static int add(int a, int b) {
+    return a + b;
+}
+```
+
+## 5. Object-Oriented Programming
+
+### Classes and Objects:
+```java
+public class Student {
+    private String name;
+    private int age;
+    
+    // Constructor
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+### Four Pillars of OOP:
+1. **Encapsulation** - Data hiding using private access modifiers
+2. **Inheritance** - Code reusability using extends keyword
+3. **Polymorphism** - Method overriding and overloading
+4. **Abstraction** - Abstract classes and interfaces
+
+## 6. Exception Handling
+
+```java
+try {
+    // risky code
+} catch (ExceptionType e) {
+    // handle exception
+} finally {
+    // cleanup code
+}
+
+// Custom exception
+public class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+```
+
+## 7. Collections Framework
+
+### List Interface:
+- ArrayList
+- LinkedList
+- Vector
+
+### Set Interface:
+- HashSet
+- LinkedHashSet
+- TreeSet
+
+### Map Interface:
+- HashMap
+- LinkedHashMap
+- TreeMap
+
+```java
+List<String> list = new ArrayList<>();
+list.add("Java");
+list.add("Python");
+
+Map<String, Integer> map = new HashMap<>();
+map.put("Java", 1);
+map.put("Python", 2);
+```
+
+## 8. File I/O Operations
+
+```java
+// Reading from file
+try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
+    String line;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+// Writing to file
+try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+    writer.write("Hello, World!");
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+## Best Practices
+
+1. Follow naming conventions (camelCase for variables and methods)
+2. Use meaningful variable names
+3. Write clean and readable code
+4. Handle exceptions properly
+5. Use appropriate data structures
+6. Document your code with comments
+7. Follow SOLID principles
+8. Write unit tests
+
+## Common Interview Questions
+
+1. What is the difference between JDK, JRE, and JVM?
+2. Explain the concept of inheritance in Java
+3. What is method overloading vs method overriding?
+4. How does garbage collection work in Java?
+5. What are the different types of exceptions in Java?
+6. Explain the Collections framework
+7. What is the difference between ArrayList and LinkedList?
+8. How do you handle memory leaks in Java?
+
+---
+
+*This document provides a comprehensive overview of Java fundamentals. For more detailed explanations and examples, refer to the video tutorials and additional resources provided in the course.*

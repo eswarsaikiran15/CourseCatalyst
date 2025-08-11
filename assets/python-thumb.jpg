@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <linearGradient id="pythonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3776ab;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ffd43b;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#306998;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4B8BBE;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="pythonBg" cx="40%" cy="40%" r="80%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.2);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(0,0,0,0.1);stop-opacity:1" />
+    </radialGradient>
+    <filter id="pythonGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#pythonGrad)"/>
+  <rect width="400" height="225" fill="url(#pythonBg)"/>
+  
+  <!-- Python snake inspired logo -->
+  <g transform="translate(50, 60)">
+    <path d="M0 30 Q10 15 25 20 Q40 25 45 40 Q40 55 25 50 Q10 45 0 30" fill="rgba(255,255,255,0.9)" stroke="rgba(55,118,171,0.8)" stroke-width="2"/>
+    <path d="M20 5 Q35 0 50 10 Q65 20 60 35 Q55 50 40 45 Q25 40 20 25" fill="rgba(255,212,59,0.9)" stroke="rgba(48,105,152,0.8)" stroke-width="2"/>
+    <circle cx="15" cy="25" r="3" fill="#306998"/>
+    <circle cx="45" cy="15" r="3" fill="#3776ab"/>
+  </g>
+  
+  <!-- Code snippet -->
+  <g transform="translate(280, 45)" fill="rgba(255,255,255,0.95)" font-family="Consolas, monospace">
+    <text font-size="11" font-weight="bold">import pandas as pd</text>
+    <text y="16" font-size="11">import numpy as np</text>
+    <text y="34" font-size="10">def analyze_data():</text>
+    <text y="48" font-size="9">    df = pd.read_csv()</text>
+    <text y="62" font-size="9">    return df.mean()</text>
+    <text y="80" font-size="10">print("Hello World")</text>
+  </g>
+  
+  <!-- Data science icons -->
+  <g transform="translate(300, 140)" fill="rgba(255,255,255,0.8)">
+    <!-- Chart bars -->
+    <rect x="0" y="15" width="4" height="15" fill="#ffd43b"/>
+    <rect x="6" y="10" width="4" height="20" fill="#3776ab"/>
+    <rect x="12" y="5" width="4" height="25" fill="#306998"/>
+    <rect x="18" y="12" width="4" height="18" fill="#ffd43b"/>
+    <!-- Chart axis -->
+    <line x1="0" y1="32" x2="22" y2="32" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+    <line x1="0" y1="32" x2="0" y2="5" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+  </g>
+  
+  <!-- Decorative elements inspired by ML/AI -->
+  <g transform="translate(60, 140)" fill="rgba(255,255,255,0.3)">
+    <circle cx="0" cy="0" r="3"/>
+    <circle cx="15" cy="5" r="2"/>
+    <circle cx="8" cy="15" r="2.5"/>
+    <line x1="0" y1="0" x2="15" y2="5" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <line x1="0" y1="0" x2="8" y2="15" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <line x1="15" y1="5" x2="8" y2="15" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  </g>
+  
+  <!-- Binary/hex pattern -->
+  <g fill="rgba(255,255,255,0.15)" font-family="monospace" font-size="9">
+    <text x="15" y="200">print("Hello, World!") # Python rocks</text>
+    <text x="15" y="215">>>> import this</text>
+  </g>
+  
+  <!-- Main title -->
+  <text x="200" y="120" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" font-weight="bold" filter="url(#pythonGlow)">Python</text>
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.95)" text-anchor="middle">Data Science & AI</text>
+  
+  <!-- Modern decorative shapes -->
+  <circle cx="340" cy="50" r="8" fill="rgba(255,212,59,0.3)"/>
+  <circle cx="40" cy="35" r="6" fill="rgba(55,118,171,0.3)"/>
+  <circle cx="360" cy="180" r="5" fill="rgba(255,255,255,0.2)"/>
+  
+  <!-- Geometric patterns -->
+  <polygon points="140,25 155,25 147.5,40" fill="rgba(255,212,59,0.25)"/>
+  <rect x="320" y="180" width="12" height="12" rx="2" fill="rgba(55,118,171,0.2)" transform="rotate(45 326 186)"/>
+  <path d="M20 180 L35 180 L27.5 195 Z" fill="rgba(255,255,255,0.15)"/>
+</svg>

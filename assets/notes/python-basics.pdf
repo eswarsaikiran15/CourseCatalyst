@@ -1,0 +1,492 @@
+# Python Basics - Comprehensive Study Guide
+
+## Table of Contents
+1. Getting Started with Python
+2. Variables and Data Types
+3. Control Flow
+4. Functions
+5. Data Structures
+6. Object-Oriented Programming
+7. File Handling
+8. Error Handling
+9. Libraries and Modules
+10. Best Practices
+
+## 1. Getting Started with Python
+
+Python is a high-level, interpreted programming language known for its simplicity and readability.
+
+### Why Python?
+- Easy to learn and use
+- Extensive standard library
+- Cross-platform compatibility
+- Large community support
+- Versatile (web development, data science, automation, etc.)
+
+### Installation and Setup:
+```bash
+# Download from python.org
+# Verify installation
+python --version
+python3 --version
+
+# Using pip for package management
+pip install package_name
+pip list
+pip freeze > requirements.txt
+```
+
+## 2. Variables and Data Types
+
+### Variable Assignment:
+```python
+# Dynamic typing - no need to declare type
+name = "Alice"
+age = 30
+height = 5.6
+is_student = True
+```
+
+### Data Types:
+```python
+# Numbers
+integer_num = 42
+float_num = 3.14
+complex_num = 3 + 4j
+
+# Strings
+single_quote = 'Hello'
+double_quote = "World"
+multiline = """This is a
+multiline string"""
+
+# Boolean
+is_true = True
+is_false = False
+
+# None type
+nothing = None
+```
+
+### Type Conversion:
+```python
+# Implicit conversion
+result = 10 + 3.5  # Result is 13.5 (float)
+
+# Explicit conversion
+str_num = "123"
+int_num = int(str_num)  # 123
+float_num = float(str_num)  # 123.0
+str_from_int = str(42)  # "42"
+```
+
+## 3. Control Flow
+
+### Conditional Statements:
+```python
+if condition:
+    # code block
+elif another_condition:
+    # code block
+else:
+    # code block
+
+# Ternary operator
+result = value_if_true if condition else value_if_false
+```
+
+### Loops:
+```python
+# For loop
+for i in range(5):
+    print(i)
+
+for item in [1, 2, 3, 4, 5]:
+    print(item)
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# Loop control
+for i in range(10):
+    if i == 3:
+        continue  # Skip iteration
+    if i == 7:
+        break     # Exit loop
+    print(i)
+```
+
+### List Comprehensions:
+```python
+# Basic list comprehension
+squares = [x**2 for x in range(10)]
+
+# With condition
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+
+# Dictionary comprehension
+square_dict = {x: x**2 for x in range(5)}
+```
+
+## 4. Functions
+
+### Function Definition:
+```python
+def function_name(parameters):
+    """Docstring describing the function"""
+    # function body
+    return value
+
+# Example
+def greet(name, greeting="Hello"):
+    """Greet a person with a custom or default greeting"""
+    return f"{greeting}, {name}!"
+
+# Function call
+message = greet("Alice")
+custom_message = greet("Bob", "Hi")
+```
+
+### Advanced Function Features:
+```python
+# *args and **kwargs
+def flexible_function(*args, **kwargs):
+    print("Positional arguments:", args)
+    print("Keyword arguments:", kwargs)
+
+flexible_function(1, 2, 3, name="Alice", age=30)
+
+# Lambda functions
+square = lambda x: x**2
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(square, numbers))
+
+# Decorators
+def timer_decorator(func):
+    import time
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} took {end - start} seconds")
+        return result
+    return wrapper
+
+@timer_decorator
+def slow_function():
+    import time
+    time.sleep(1)
+    return "Done"
+```
+
+## 5. Data Structures
+
+### Lists:
+```python
+# Creation and manipulation
+fruits = ["apple", "banana", "cherry"]
+fruits.append("date")
+fruits.insert(1, "blueberry")
+fruits.remove("banana")
+popped = fruits.pop()
+
+# List methods
+fruits.sort()
+fruits.reverse()
+count = fruits.count("apple")
+index = fruits.index("cherry")
+```
+
+### Tuples:
+```python
+# Immutable sequences
+coordinates = (10, 20)
+point = 15, 25  # Tuple packing
+x, y = point    # Tuple unpacking
+
+# Named tuples
+from collections import namedtuple
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(10, 20)
+```
+
+### Dictionaries:
+```python
+# Key-value pairs
+person = {
+    "name": "Alice",
+    "age": 30,
+    "city": "New York"
+}
+
+# Dictionary operations
+person["email"] = "alice@email.com"
+age = person.get("age", 0)
+keys = person.keys()
+values = person.values()
+items = person.items()
+
+# Dictionary comprehension
+squares = {x: x**2 for x in range(5)}
+```
+
+### Sets:
+```python
+# Unique elements
+numbers = {1, 2, 3, 4, 5}
+numbers.add(6)
+numbers.discard(3)
+
+# Set operations
+set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+union = set1 | set2          # {1, 2, 3, 4, 5, 6}
+intersection = set1 & set2   # {3, 4}
+difference = set1 - set2     # {1, 2}
+```
+
+## 6. Object-Oriented Programming
+
+### Classes and Objects:
+```python
+class Person:
+    # Class variable
+    species = "Homo sapiens"
+    
+    def __init__(self, name, age):
+        # Instance variables
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"Hi, I'm {self.name} and I'm {self.age} years old"
+    
+    def have_birthday(self):
+        self.age += 1
+    
+    @classmethod
+    def from_string(cls, person_str):
+        name, age = person_str.split('-')
+        return cls(name, int(age))
+    
+    @staticmethod
+    def is_adult(age):
+        return age >= 18
+
+# Usage
+person1 = Person("Alice", 25)
+person2 = Person.from_string("Bob-30")
+```
+
+### Inheritance:
+```python
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+        self.courses = []
+    
+    def enroll(self, course):
+        self.courses.append(course)
+    
+    def introduce(self):  # Method overriding
+        base_intro = super().introduce()
+        return f"{base_intro}. My student ID is {self.student_id}"
+
+# Multiple inheritance
+class Teacher(Person):
+    def __init__(self, name, age, subject):
+        super().__init__(name, age)
+        self.subject = subject
+
+class TeachingAssistant(Student, Teacher):
+    def __init__(self, name, age, student_id, subject):
+        Student.__init__(self, name, age, student_id)
+        Teacher.__init__(self, name, age, subject)
+```
+
+## 7. File Handling
+
+```python
+# Reading files
+with open('file.txt', 'r') as file:
+    content = file.read()
+    # or
+    lines = file.readlines()
+    # or
+    for line in file:
+        print(line.strip())
+
+# Writing files
+with open('output.txt', 'w') as file:
+    file.write("Hello, World!\n")
+    file.writelines(["Line 1\n", "Line 2\n"])
+
+# File modes: 'r', 'w', 'a', 'x', 'b', 't', '+'
+```
+
+## 8. Error Handling
+
+```python
+try:
+    risky_operation()
+except SpecificException as e:
+    print(f"Specific error: {e}")
+except Exception as e:
+    print(f"General error: {e}")
+else:
+    print("No exceptions occurred")
+finally:
+    print("This always executes")
+
+# Raising exceptions
+def divide(a, b):
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
+    return a / b
+
+# Custom exceptions
+class CustomError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+```
+
+## 9. Libraries and Modules
+
+### Standard Library:
+```python
+import os
+import sys
+import datetime
+import json
+import random
+import math
+
+# Date and time
+now = datetime.datetime.now()
+formatted = now.strftime("%Y-%m-%d %H:%M:%S")
+
+# JSON handling
+data = {"name": "Alice", "age": 30}
+json_string = json.dumps(data)
+parsed_data = json.loads(json_string)
+
+# Random numbers
+random_int = random.randint(1, 100)
+random_choice = random.choice(['a', 'b', 'c'])
+```
+
+### Popular Third-party Libraries:
+```python
+# Data manipulation
+import pandas as pd
+import numpy as np
+
+# Web development
+import flask
+import django
+
+# Data visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Machine learning
+import scikit-learn
+import tensorflow
+import pytorch
+```
+
+## 10. Best Practices
+
+### Code Style (PEP 8):
+```python
+# Variable naming
+user_name = "alice"  # snake_case for variables
+USER_CONSTANT = "value"  # UPPER_CASE for constants
+
+# Function naming
+def calculate_total_price():  # snake_case for functions
+    pass
+
+# Class naming
+class UserAccount:  # PascalCase for classes
+    pass
+
+# Imports
+import os
+import sys
+import third_party_lib
+from mymodule import myfunction
+```
+
+### Documentation:
+```python
+def calculate_area(length, width):
+    """
+    Calculate the area of a rectangle.
+    
+    Args:
+        length (float): The length of the rectangle
+        width (float): The width of the rectangle
+    
+    Returns:
+        float: The area of the rectangle
+    
+    Raises:
+        ValueError: If length or width is negative
+    """
+    if length < 0 or width < 0:
+        raise ValueError("Length and width must be positive")
+    return length * width
+```
+
+### Performance Tips:
+```python
+# Use list comprehensions instead of loops when possible
+squares = [x**2 for x in range(1000)]
+
+# Use generators for memory efficiency
+def fibonacci_generator():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+# Use enumerate() instead of range(len())
+for index, value in enumerate(my_list):
+    print(f"{index}: {value}")
+
+# Use zip() for parallel iteration
+for name, age in zip(names, ages):
+    print(f"{name} is {age} years old")
+```
+
+## Common Interview Questions
+
+1. What is the difference between list and tuple?
+2. Explain the concept of duck typing
+3. What are decorators and how do they work?
+4. What is the difference between deep copy and shallow copy?
+5. How does memory management work in Python?
+6. What are generators and when would you use them?
+7. Explain the Global Interpreter Lock (GIL)
+8. What is the difference between `is` and `==`?
+9. How do you handle exceptions in Python?
+10. What are lambda functions and when to use them?
+
+## Practice Projects
+
+1. **Calculator**: Build a simple calculator with basic operations
+2. **To-Do List**: Create a command-line to-do list application
+3. **File Organizer**: Sort files in a directory by type
+4. **Web Scraper**: Extract data from websites using BeautifulSoup
+5. **Data Analysis**: Analyze a dataset using pandas and matplotlib
+
+---
+
+*This comprehensive guide covers Python fundamentals essential for programming interviews and real-world development. Practice regularly and build projects to reinforce your learning.*
