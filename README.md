@@ -16,7 +16,7 @@ A responsive, accessible, production-ready static website for curated programmin
 
 ## 🚀 Demo
 
-Visit the live demo: [CourseCatalyst]((https://coursecatalystapp.netlify.app/))
+Visit the live demo: [CourseCatalyst](https://coursecatalystapp.netlify.app/)
 
 ## 💻 Installation
 
@@ -326,6 +326,7 @@ If you encounter any issues or have questions:
 - [x] Animations respect `prefers-reduced-motion`
 
 **CourseCatalyst** - Empowering developers with curated learning resources! 🚀
+
 
 
 
