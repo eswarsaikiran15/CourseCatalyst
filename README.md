@@ -1,7 +1,6 @@
 # CourseCatalyst
 
 
-## 🚀 Demo
 
 Visit the live demo: [CourseCatalyst](https://coursecatalystapp.netlify.app/)
 
@@ -327,6 +326,7 @@ If you encounter any issues or have questions:
 - [x] Animations respect `prefers-reduced-motion`
 
 **CourseCatalyst** - Empowering developers with curated learning resources! 🚀
+
 
 
 
