@@ -23,7 +23,7 @@ A responsive, accessible, production-ready static website for curated programmin
 1. **Clone the repository**
    ```bash
    git clone https://github.com/your-username/coursecatalyst.git
-   cd coursecatalyst
+   cd CourseCatalyst
    ```
 
 2. **Open locally**
@@ -135,7 +135,7 @@ const courses = {
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/username/coursecatalyst.git
+   git remote add origin https://github.com/eswarsaikiran15/coursecatalyst.git
    git push -u origin main
    ```
 
@@ -148,7 +148,7 @@ const courses = {
 
 3. **Access Your Site**
    ```
-   https://username.github.io/coursecatalyst
+   https://eswarsaikiran15.github.io/coursecatalyst
    ```
 
 ### Other Hosting Options
@@ -326,6 +326,7 @@ If you encounter any issues or have questions:
 - [x] Animations respect `prefers-reduced-motion`
 
 **CourseCatalyst** - Empowering developers with curated learning resources! 🚀
+
 
 
 
