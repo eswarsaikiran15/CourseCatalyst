@@ -1,15 +1,10 @@
-Alright — you want your **CourseCatalyst README** in a clean, well-formatted **GitHub README.md** style, so it looks like those polished profile READMEs but with all your project details.
-
-Here’s the **full code block** version you can literally copy-paste into `README.md` in your repo:
-
-````markdown
 # 🌊 CourseCatalyst
 > **Empowering developers with curated programming courses & resources**  
 > Responsive • Accessible • Ocean-themed • Static HTML/CSS/JS
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-netlify-badge/deploy-status)](https://coursecatalystapp.netlify.app/)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
-![GitHub Repo stars](https://img.shields.io/github/stars/eswarsaikiran15/coursecatalyst?style=social)  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-netlify-badge/deploy-status)](https://coursecatalystapp.netlify.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![GitHub Repo stars](https://img.shields.io/github/stars/eswarsaikiran15/coursecatalyst?style=social)
 
 🔗 **Live Demo:** [coursecatalystapp.netlify.app](https://coursecatalystapp.netlify.app/)
 
@@ -30,14 +25,14 @@ Here’s the **full code block** version you can literally copy-paste into `READ
 ---
 
 ## ✨ Features
-✅ **Ocean Theme** – Animated SVG waves + tsParticles bubbles  
-✅ **Responsive Design** – Mobile-first with hamburger nav  
-✅ **Dark Mode** – Auto-detect + toggle with persistence  
-✅ **Accessible** – WCAG AA, screen reader & keyboard support  
-✅ **Dynamic Course Pages** – URL-based loading  
-✅ **Contact Form** – EmailJS integration with validation  
-✅ **Optimized** – Lazy loading, reduced motion, mobile-friendly  
-✅ **SEO Ready** – Semantic HTML, meta tags, best practices  
+- 🌊 **Ocean Theme** – Animated SVG waves + tsParticles bubbles  
+- 📱 **Responsive Design** – Mobile-first with hamburger nav  
+- 🌙 **Dark Mode** – Auto-detect + toggle with persistence  
+- ♿ **Accessible** – WCAG AA, screen reader & keyboard support  
+- 📂 **Dynamic Course Pages** – URL-based loading  
+- ✉ **Contact Form** – EmailJS integration with validation  
+- ⚡ **Optimized** – Lazy loading, reduced motion, mobile-friendly  
+- 🔍 **SEO Ready** – Semantic HTML, meta tags, best practices  
 
 ---
 
@@ -55,7 +50,6 @@ npx http-server                 # Node.js
 
 # Visit in browser
 http://localhost:8000
-````
 
 ---
 
@@ -204,3 +198,4 @@ This project is licensed under the [MIT License](LICENSE).
 If you want, I can also **add screenshot/GIF placeholders** at the top so your GitHub page instantly pops visually.  
 Do you want me to include those preview image sections? That’ll make it *really* look like a portfolio project.
 ```
+
