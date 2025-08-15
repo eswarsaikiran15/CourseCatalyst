@@ -288,9 +288,7 @@ Edit CSS custom properties in `style.css`:
 - Ensure accessibility standards are maintained
 - Update documentation for new features
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -329,6 +327,7 @@ If you encounter any issues or have questions:
 - [ ] Animations respect `prefers-reduced-motion`
 
 **CourseCatalyst** - Empowering developers with curated learning resources! 🚀
+
 
 
 
