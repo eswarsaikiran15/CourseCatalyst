@@ -53,34 +53,93 @@ http://localhost:8000
 
 ---
 
+Gotcha — in that screenshot the README markdown is breaking because GitHub needs **proper spacing, line breaks, and valid badge/image syntax**.
+
+I’ll rewrite it so it renders cleanly on GitHub — badges in one line, headings consistent, and no broken links.
+
+Here’s the fixed `README.md` code block:
+
+````markdown
+# 🌊 CourseCatalyst
+> **Empowering developers with curated programming courses & resources**  
+> Responsive • Accessible • Ocean-themed • Static HTML/CSS/JS
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-netlify-badge/deploy-status)](https://coursecatalystapp.netlify.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![GitHub Repo stars](https://img.shields.io/github/stars/eswarsaikiran15/coursecatalyst?style=social)
+
+🔗 **Live Demo:** [coursecatalystapp.netlify.app](https://coursecatalystapp.netlify.app/)
+
+---
+
+## 📖 Table of Contents
+- [✨ Features](#-features)
+- [🚀 Quick Start](#-quick-start)
+- [📧 EmailJS Setup](#-emailjs-setup)
+- [📚 Course Data](#-course-data)
+- [🌍 Deployment](#-deployment)
+- [♿ Accessibility](#-accessibility)
+- [⚡ Performance](#-performance)
+- [🎨 Customization](#-customization)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
+---
+
+## ✨ Features
+- 🌊 **Ocean Theme** – Animated SVG waves + tsParticles bubbles  
+- 📱 **Responsive Design** – Mobile-first with hamburger nav  
+- 🌙 **Dark Mode** – Auto-detect + toggle with persistence  
+- ♿ **Accessible** – WCAG AA, screen reader & keyboard support  
+- 📂 **Dynamic Course Pages** – URL-based loading  
+- ✉ **Contact Form** – EmailJS integration with validation  
+- ⚡ **Optimized** – Lazy loading, reduced motion, mobile-friendly  
+- 🔍 **SEO Ready** – Semantic HTML, meta tags, best practices  
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/coursecatalyst.git
+cd coursecatalyst
+
+# Serve locally (choose one)
+python -m http.server 8000      # Python 3
+npx http-server                 # Node.js
+# Or use VSCode Live Server extension
+
+# Visit in browser
+http://localhost:8000
+````
+
+---
+
 ## 📧 EmailJS Setup
 
-Easily enable contact form submissions without a backend.
-
-1. **Sign up** at [EmailJS](https://www.emailjs.com/) & verify your email
-2. **Create an Email Service** → Get your `SERVICE_ID`
-3. **Create a Template** with variables:
+1. Sign up at [EmailJS](https://www.emailjs.com/) and verify your email
+2. Create an Email Service → Get your **SERVICE\_ID**
+3. Create a Template with variables:
 
    ```text
    From: {{from_name}} <{{from_email}}>
    Subject: {{subject}}
    Message: {{message}}
    ```
-4. **Get your User ID** from Account > API Keys
-5. **Update `main.js`**:
+4. Get your **USER\_ID** from Account → API Keys
+5. Update `main.js`:
 
    ```javascript
    const EMAILJS_USER_ID = 'your_user_id_here';
    const EMAILJS_SERVICE_ID = 'your_service_id_here';
    const EMAILJS_TEMPLATE_ID = 'your_template_id_here';
    ```
-6. Test the form on the `/contact.html` page
+6. Test the form on `/contact.html`
 
 ---
 
 ## 📚 Course Data
-
-Courses are stored in `main.js`:
 
 ```javascript
 const courses = {
@@ -98,17 +157,17 @@ const courses = {
 };
 ```
 
-To add a new course:
+To add a course:
 
-1. Add the thumbnail image in `assets/`
-2. Add the course data to `courses` in `main.js`
+1. Add thumbnail to `assets/`
+2. Add data to `main.js`
 3. (Optional) Add notes to `assets/notes/`
 
 ---
 
 ## 🌍 Deployment
 
-### **GitHub Pages**
+### GitHub Pages
 
 ```bash
 git init
@@ -120,16 +179,15 @@ git push -u origin main
 ```
 
 * Go to **Settings > Pages**
-* Set **Source** to `main` branch, root folder
-* Access your site at:
-  `https://eswarsaikiran15.github.io/coursecatalyst`
+* Source: `main` branch → root folder
+* Access: `https://eswarsaikiran15.github.io/coursecatalyst`
 
-### **Netlify**
+### Netlify
 
-* Drag and drop the project folder into [Netlify](https://app.netlify.com/)
-* Or link your GitHub repo for auto-deployments
+* Drag & drop folder to [Netlify](https://app.netlify.com/)
+* Or connect repo for auto deploys
 
-### **Vercel**
+### Vercel
 
 ```bash
 npm i -g vercel
@@ -140,28 +198,26 @@ vercel
 
 ## ♿ Accessibility
 
-* **WCAG AA Compliant**
-* Semantic HTML, proper headings, alt text
-* High color contrast
-* Keyboard navigation & focus indicators
+* WCAG AA compliant
+* Semantic HTML + headings
+* Alt text for all images
+* Keyboard navigation + focus states
 * Respects `prefers-reduced-motion`
 
 ---
 
 ## ⚡ Performance
 
-* Lazy loading images
-* Reduced animations on mobile & slow connections
-* Minimal external dependencies
-* Optimized CSS selectors & compressed images
+* Lazy load images
+* Reduce animations on mobile/slow network
+* Minimal dependencies
+* Optimized assets
 
 ---
 
 ## 🎨 Customization
 
-### Change Theme Colors
-
-Edit in `style.css`:
+Change theme colors in `style.css`:
 
 ```css
 :root {
@@ -175,17 +231,17 @@ Edit in `style.css`:
 
 ## 🤝 Contributing
 
-1. Fork the repo
-2. Create a new branch: `git checkout -b feature/your-feature`
-3. Commit changes: `git commit -m "Add feature"`
-4. Push branch: `git push origin feature/your-feature`
-5. Open a Pull Request
+1. Fork repo
+2. Create branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "Add feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open PR
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+Licensed under the [MIT License](LICENSE).
 
 ---
 
@@ -193,9 +249,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ```
 
----
+This will now render **perfectly formatted** on GitHub — badges inline, headings clean, lists aligned, and code blocks readable.  
 
-If you want, I can also **add screenshot/GIF placeholders** at the top so your GitHub page instantly pops visually.  
-Do you want me to include those preview image sections? That’ll make it *really* look like a portfolio project.
+I can also add **a hero banner image and screenshots section** so it visually pops when someone lands on your repo.  
+Do you want me to add those? That will make it look more like a portfolio-grade README.
 ```
-
