@@ -51,53 +51,6 @@ npx http-server                 # Node.js
 # Visit in browser
 http://localhost:8000
 
----
-
-Gotcha — in that screenshot the README markdown is breaking because GitHub needs **proper spacing, line breaks, and valid badge/image syntax**.
-
-I’ll rewrite it so it renders cleanly on GitHub — badges in one line, headings consistent, and no broken links.
-
-Here’s the fixed `README.md` code block:
-
-````markdown
-# 🌊 CourseCatalyst
-> **Empowering developers with curated programming courses & resources**  
-> Responsive • Accessible • Ocean-themed • Static HTML/CSS/JS
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-netlify-badge/deploy-status)](https://coursecatalystapp.netlify.app/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![GitHub Repo stars](https://img.shields.io/github/stars/eswarsaikiran15/coursecatalyst?style=social)
-
-🔗 **Live Demo:** [coursecatalystapp.netlify.app](https://coursecatalystapp.netlify.app/)
-
----
-
-## 📖 Table of Contents
-- [✨ Features](#-features)
-- [🚀 Quick Start](#-quick-start)
-- [📧 EmailJS Setup](#-emailjs-setup)
-- [📚 Course Data](#-course-data)
-- [🌍 Deployment](#-deployment)
-- [♿ Accessibility](#-accessibility)
-- [⚡ Performance](#-performance)
-- [🎨 Customization](#-customization)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-
----
-
-## ✨ Features
-- 🌊 **Ocean Theme** – Animated SVG waves + tsParticles bubbles  
-- 📱 **Responsive Design** – Mobile-first with hamburger nav  
-- 🌙 **Dark Mode** – Auto-detect + toggle with persistence  
-- ♿ **Accessible** – WCAG AA, screen reader & keyboard support  
-- 📂 **Dynamic Course Pages** – URL-based loading  
-- ✉ **Contact Form** – EmailJS integration with validation  
-- ⚡ **Optimized** – Lazy loading, reduced motion, mobile-friendly  
-- 🔍 **SEO Ready** – Semantic HTML, meta tags, best practices  
-
----
-
 ## 🚀 Quick Start
 
 ```bash
@@ -254,3 +207,4 @@ This will now render **perfectly formatted** on GitHub — badges inline, headin
 I can also add **a hero banner image and screenshots section** so it visually pops when someone lands on your repo.  
 Do you want me to add those? That will make it look more like a portfolio-grade README.
 ```
+
