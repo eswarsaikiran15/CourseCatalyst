@@ -51,21 +51,7 @@ npx http-server                 # Node.js
 # Visit in browser
 http://localhost:8000
 
-## 🚀 Quick Start
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/coursecatalyst.git
-cd coursecatalyst
-
-# Serve locally (choose one)
-python -m http.server 8000      # Python 3
-npx http-server                 # Node.js
-# Or use VSCode Live Server extension
-
-# Visit in browser
-http://localhost:8000
-````
 
 ---
 
@@ -207,4 +193,5 @@ This will now render **perfectly formatted** on GitHub — badges inline, headin
 I can also add **a hero banner image and screenshots section** so it visually pops when someone lands on your repo.  
 Do you want me to add those? That will make it look more like a portfolio-grade README.
 ```
+
 
